@@ -1,6 +1,5 @@
 import './App.css';
 import { Routes ,Route } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
 import Login from './pages/Login';
 import Register from './pages/Register';
 import CreateAvatar from './pages/CreateAvatar';

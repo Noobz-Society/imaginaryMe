@@ -1,0 +1,70 @@
+#home_container {
+    margin-top: 1rem;
+
+
+}
+#circle {
+    background-image: url('../../public/assets/img/circle.svg');
+    width: 304.47px;
+    height: 304.47px;
+    background-repeat: no-repeat;
+}
+
+#example_container {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    left: 170px;
+    bottom: 20rem;
+
+}
+
+.flex_container {
+    display: flex;
+    flex-direction: row;
+    gap: 19rem;
+
+}
+
+#home_right_section {
+    position: relative;
+    width: 600px;
+    height: 135px;
+    top: 2rem;
+}
+
+.centered_button {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+#started_button {
+    background-color: #DFE7F7;
+}
+
+
+#home_right_section p {
+    text-align: center;
+    color: #DFE7F7;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 41px;
+
+}
+
+#bottom_elipse {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    top: 3rem;
+    left: 74rem
+
+}
+
+#bottom_circle {
+    position: relative;
+    top: 2.7rem;
+
+}

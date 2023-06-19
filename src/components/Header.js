@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Navigation = () => {
+const Header = () => {
   return (
    <header>
       <div id="navigation_container">
@@ -11,12 +11,13 @@ const Navigation = () => {
     
         </div>
         <div className="navigation_content">
-          <a href="/connexion">Sign in</a>
+          <a href="/login">Sign in</a>
           <a href="/register">Sign up</a>
         </div>
       </div>
+      <h2 id="title">CharaMe</h2>
   </header>
   )
 }
 
-export default Navigation
+export default Header

@@ -1,8 +1,11 @@
 import React from 'react';
-import { Form, Button } from "react-bootstrap";
 import { useState } from 'react';
 import axios from 'axios';
 import Cookies from "universal-cookie";
+import '../css/Login.css'
+import Chara from '../assets/img/chara.svg'
+
+
 
 
 
@@ -47,45 +50,41 @@ export default function Login() {
       }
 
     return (
-        <>
-            <h2>Sign in</h2>
-            {/* display success message */}
-        {login ? (
-          <p className="text-success">You Are Logged in Successfully</p>
-        ) : (
-            <></>
-        )}
-      <Form>
-        {/* email */}
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email"
-          />
-        </Form.Group>
+        <div id="login_container">
+                 <h2>Welcome back !</h2>
+                 {/* display success message */}
+             {login ? (
+               <p className="text-success">You Are Logged in Successfully</p>
+             ) : (
+                 <></>
+             )}
+           <form>
+             {/* email */}
+               <input
+                 type="email"
+                 name="email"
+                 value={email}
+                 onChange={(e) => setEmail(e.target.value)}
+                 placeholder="Enter email"
+               />
+     
+             {/* password */}
+               <input
+                 type="password"
+                 name="password"
+                 value={password}
+                 onChange={(e) => setPassword(e.target.value)}
+                 placeholder="Password"
+               />
+           
+     
+     
+             {/* submit button */}
+             <input type="submit" value="Sign In" onClick={(e) => handleSubmit(e)}/>
+               
+           </form>
+          <img src={Chara} alt="chibi_character" id="chibi_character"/>
 
-        {/* password */}
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          />
-        </Form.Group>
-
-
-        {/* submit button */}
-        <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>
-          Submit
-        </Button>
-      </Form>
-        </>
+        </div>
     )
 }

@@ -14,7 +14,7 @@ export default function Register() {
         // set configurations
          const configuration = {
              method: "post",
-             url: "http://localhost:4000/register",
+             url: "http://localhost:4000/auth/register",
              data: {
                email,
                name,
@@ -34,7 +34,7 @@ export default function Register() {
 
     return (
         <>
-            <h2>Inscription</h2>
+            <h2>Sign up</h2>
            {/* display success message */}
            {register ? (
              <p className="text-success">You Are Registered Successfully</p>

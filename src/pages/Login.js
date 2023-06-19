@@ -16,10 +16,11 @@ export default function Login() {
     const handleSubmit = (e) => {
         // prevent the form from refreshing the whole page
         e.preventDefault();
-
+  
+        
         const configuration = {
             method: "post",
-            url: "http://localhost:4000/login",
+            url: "http://localhost:4000/auth/login",
             data: {
               email,
               password,
@@ -32,10 +33,11 @@ export default function Login() {
         setLogin(true);
 
           // set the cookie
-          cookies.set("TOKEN", result.data.token, {
+          cookies.set("TOKEN", result.data, {
               path: "/",
             });
-          window.location.href = "/auth";
+            console.log(result.data);
+          //window.location.href = "/";
         })
         
         .catch((error) => {
@@ -46,7 +48,7 @@ export default function Login() {
 
     return (
         <>
-            <h2>Connexion</h2>
+            <h2>Sign in</h2>
             {/* display success message */}
         {login ? (
           <p className="text-success">You Are Logged in Successfully</p>

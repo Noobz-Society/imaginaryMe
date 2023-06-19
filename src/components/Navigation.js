@@ -2,14 +2,20 @@ import React from 'react'
 
 const Navigation = () => {
   return (
-    <div id="navigation">
-          <a href="/">Accueil</a>
-          <a href="/free">Créer</a>
-          <a href="/auth">Communauté</a>
-          <a href="/connexion">Connexion</a>
-          <a href="/register">Inscription</a>
-
-    </div>
+   <header>
+      <div id="navigation_container">
+        <div className="navigation_content">
+              <a href="/">Home</a>
+              <a href="/free">Create</a>
+              <a href="/auth">Community</a>
+    
+        </div>
+        <div className="navigation_content">
+          <a href="/connexion">Sign in</a>
+          <a href="/register">Sign up</a>
+        </div>
+      </div>
+  </header>
   )
 }
 

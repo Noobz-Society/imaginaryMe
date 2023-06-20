@@ -1,8 +1,13 @@
 #login_container {
     margin-top: 4rem;
     margin-bottom: 5rem;
-   }
+    
+}
 
+.login_form {
+    width: 30%;
+    margin-left: 50%;
+}
 
 #login_container h2 {
     color: #fff;

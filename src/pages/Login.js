@@ -1,9 +1,10 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import Cookies from "universal-cookie";
 import '../css/Login.css'
 import Chara from '../assets/img/chara.svg'
+import { AuthContext } from '../AuthContext';
 
 
 
@@ -13,7 +14,7 @@ import Chara from '../assets/img/chara.svg'
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [login, setLogin] = useState(false);
+    const { handleLogin } = useContext(AuthContext);
     const cookies = new Cookies();
 
     const handleSubmit = (e) => {
@@ -33,14 +34,13 @@ export default function Login() {
         // make the API call
         axios(configuration)
         .then((result) => {
-        setLogin(true);
-
+          handleLogin(); // Set login status to true
+          
           // set the cookie
           cookies.set("TOKEN", result.data, {
               path: "/",
             });
-            console.log(result.data);
-          //window.location.href = "/";
+          window.location.href = "/";
         })
         
         .catch((error) => {
@@ -51,15 +51,10 @@ export default function Login() {
 
     return (
         <div id="login_container">
-                 <h2>Welcome back !</h2>
-                 {/* display success message */}
-             {login ? (
-               <p className="text-success">You Are Logged in Successfully</p>
-             ) : (
-                 <></>
-             )}
-           <form>
+            <h2>Welcome back !</h2>
+           <form className="login_form">
              {/* email */}
+             <label for="email">E-mail</label>
                <input
                  type="email"
                  name="email"
@@ -69,6 +64,7 @@ export default function Login() {
                />
      
              {/* password */}
+             <label for="password">Password</label>
                <input
                  type="password"
                  name="password"

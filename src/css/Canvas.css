@@ -1,0 +1,7 @@
+.canvas_container {
+    background-color: black;
+    width: 25%;
+    height: 22rem;
+    position: relative;
+    bottom: 4rem;
+}

@@ -9,31 +9,27 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Profile from './pages/Profile'
 import { AuthProvider } from './AuthContext';
-import { useState } from 'react'
+import EditUser from './pages/EditUser'
 import Protected from './ProtectedRoutes';
 
 function App() {
-  const [isSignedIn, setIsSignedIn] = useState(null)
-  const signin = () => {
-    setIsSignedIn(true)
-  }
-  const signout = () => {
-    setIsSignedIn(false)
-  }
+ 
+ 
   return (
     <AuthProvider>
         <Header/>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/create" element={<CreateAvatar />} />
-          <Route exact path="/auth" element={<Community />} />
+          <Route exact path="/community" element={<Community />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
-      
+          <Route exact path="/editUser" element={<EditUser />} />
+
           <Route
             path="/profile"
             element={
-              <Protected isSignedIn={isSignedIn}>
+              <Protected>
                 <Profile />
               </Protected>
             }

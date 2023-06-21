@@ -6,10 +6,10 @@ import UserPic from '../assets/img/userPic.svg'
 
 const Profile = () => {
     useEffect(() => {
-      document.body.classList.add('white-background');
+      document.body.classList.add('profile-background');
   
       return () => {
-        document.body.classList.remove('white-background');
+        document.body.classList.remove('profile-background');
       
       };
     }, []);
@@ -30,7 +30,7 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         <div id="user_edit">
           <p>Avatars: 10</p>
           <p>Likes: 42</p>
-          <button><a href="#">Edit user profile</a></button>
+          <button><a href="/editUser">Edit user profile</a></button>
         </div>
          <div className="userAvatars_container">
           <div className="userAvatars_subcontainer">

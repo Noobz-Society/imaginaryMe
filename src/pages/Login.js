@@ -38,7 +38,9 @@ export default function Login() {
               path: "/",
             });
           window.location.href = "/";
+          
         })
+        
         
         .catch((error) => {
         error = new Error();
@@ -49,6 +51,7 @@ export default function Login() {
     return (
         <div id="login_container">
             <h2>Welcome back !</h2>
+            <div className="jd">
            <form className="login_form">
              {/* email */}
              <label for="email">E-mail</label>
@@ -76,6 +79,7 @@ export default function Login() {
              <input type="submit" value="Sign In" onClick={(e) => handleSubmit(e)}/>
                
            </form>
+           </div>
           <img src={Chara} alt="chibi_character" id="chibi_character"/>
 
         </div>

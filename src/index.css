@@ -10,7 +10,41 @@ body {
 }
 
 .white-background {
-  background-color: #f2f2f2; 
+  background-color: #FFFFFF; 
+
+}
+
+
+
+.white-background header{ 
+  background-image: url("./assets/img/headerVariant.svg");
+
+}
+.createAvatar-background {
+  background-color: #FFFFFF; 
+
+}
+
+.createAvatar-background header{ 
+  background-image: url("./assets/img/headerVariant.svg");
+
+}
+
+.createAvatar-background header p {
+  content: "creation time";
+}
+.profile-background {
+  background: radial-gradient(55.82% 115.71% at 22.37% 31.07%, #D8ECFF 0%, #DFE7F7 25%, #E4E2F2 50%, #EADDEE 75%, #EFD7EA 100%) 
+
+}
+
+.profile-background header {
+  background-image: url("./assets/img/elipseBlack.svg");
+
+}
+
+.profile-background a {
+  color: #fff;
 }
 
 
@@ -28,13 +62,18 @@ button {
 a {
   text-decoration: none;
   color: black;
+  font-weight: 500;
+}
+
+a.active {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: aqua;
   padding: 2rem;
   background: linear-gradient(180deg, #D8ECFF 0%, #DFE7F7 25.52%, #E4E2F2 50.52%, #EADDEE 74.48%, #EFD7EA 100%);
   

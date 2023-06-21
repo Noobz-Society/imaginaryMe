@@ -9,10 +9,10 @@ import RandomizeButton from '../assets/img/random.svg'
 
 export default function CreateAvatar() {
   useEffect(() => {
-    document.body.classList.add('white-background');
+    document.body.classList.add('createAvatar-background');
 
     return () => {
-      document.body.classList.remove('white-background');
+      document.body.classList.remove('createAvatar-background');
     
     };
   }, []);

@@ -37,6 +37,11 @@
   }
 }
 
+.text-success {
+  color: #DFE7F7;
+  text-align: center;
+}
+
 /* Header */
 header {
   width: 100%;

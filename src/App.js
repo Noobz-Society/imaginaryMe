@@ -9,8 +9,17 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Profile from './pages/Profile'
 import { AuthProvider } from './AuthContext';
+import { useState } from 'react'
+import Protected from './ProtectedRoutes';
 
 function App() {
+  const [isSignedIn, setIsSignedIn] = useState(null)
+  const signin = () => {
+    setIsSignedIn(true)
+  }
+  const signout = () => {
+    setIsSignedIn(false)
+  }
   return (
     <AuthProvider>
         <Header/>
@@ -20,8 +29,15 @@ function App() {
           <Route exact path="/auth" element={<Community />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
-          <Route exact path="/profile" element={<Profile />} />
-  
+      
+          <Route
+            path="/profile"
+            element={
+              <Protected isSignedIn={isSignedIn}>
+                <Profile />
+              </Protected>
+            }
+          />
         </Routes>
         <Footer/>
     </AuthProvider>

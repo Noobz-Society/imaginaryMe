@@ -1,27 +1,31 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { useCookies } from 'react-cookie';
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(['TOKEN']);
 
   useEffect(() => {
     // Check if the user is already logged in
-    const token = cookies.TOKEN;
+    const token = cookies.get("TOKEN");
     if (token) {
       setIsLoggedIn(true);
     }
-  }, [cookies.TOKEN]);
+  }, []);
 
   const handleLogin = (token) => {
-    setCookie('TOKEN', token, { path: '/' });
-    setIsLoggedIn(true);
+    if(token){
+      setIsLoggedIn(true);
+    }
+   
   };
 
   const handleLogout = () => {
-    removeCookie('TOKEN');
+    // destroy the cookie
+    cookies.remove("TOKEN", { path: "/" });
+    
     setIsLoggedIn(false);
   };
 

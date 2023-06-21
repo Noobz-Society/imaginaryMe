@@ -14,10 +14,10 @@ const Header = () => {
    <header>
       <div id="navigation_container">
         <div className="navigation_content">
-              <a href="/">Home</a>
-              <a href="/create">Create</a>
-              <a href="/auth">Community</a>
-    
+          <Link to="/">Home</Link>
+          <Link to="/create">Create</Link>
+          <Link to="/auth">Community</Link>
+      
         </div>
         
         {isLoggedIn ? (

@@ -9,17 +9,14 @@ body {
     overflow-x: hidden;
 }
 
-.create-avatar-background {
+.white-background {
   background-color: #f2f2f2; 
 }
 
-.profile-background {
-  background-color: #f2f2f2; 
 
-}
 
 button {
-  background-color: #fff;
+  background-color: #DFE7F7;
   border: none;
   text-align: center;
   width: 150px;

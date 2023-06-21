@@ -1,9 +1,11 @@
 import React from 'react'
-import '../css/Canvas.css'
+import '../assets/css/Canvas.css'
 
 const Canvas = () => {
   return (
-    <div className="canvas_container">Canvas</div>
+    <div className="canvas_container">
+      
+    </div>
   )
 }
 

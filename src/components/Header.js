@@ -22,8 +22,8 @@ const Header = () => {
         
         {isLoggedIn ? (
         <div className="navigation_content">
-          <Link to="/profile">profile</Link>
-            <Link onClick={handleLogoutClick} to="/">logout</Link>
+          <Link to="/profile">Profile</Link>
+            <Link onClick={handleLogoutClick} to="/">Log out</Link>
         </div>
         ) : (
           <div className="navigation_content">

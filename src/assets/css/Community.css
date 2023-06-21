@@ -1,0 +1,19 @@
+.community_container {
+    margin-top: 2rem;
+    width: 85%;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+   
+}
+
+.community_subcontainer {
+    display:grid;
+    grid-template-columns: 160px 160px 160px 160px;
+    grid-row: auto auto;
+    grid-column-gap: 10rem;
+    grid-row-gap: 20px;
+    margin-left: 4%;
+
+}

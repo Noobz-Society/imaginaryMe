@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import Cookies from "universal-cookie";
-import '../css/Login.css'
+import '../assets/css/Login.css'
 import Chara from '../assets/img/chara.svg'
 import { AuthContext } from '../AuthContext';
 

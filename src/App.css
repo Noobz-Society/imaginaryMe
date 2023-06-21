@@ -101,7 +101,7 @@ footer{
   background: linear-gradient(180deg, #D8ECFF 0%, #DFE7F7 25.52%, #E4E2F2 50.52%, #EADDEE 74.48%, #EFD7EA 100%);
   height: auto;
   width: 100%;
-  padding-top: 40px;
+  padding-top: 2px;
   color: #fff;
 }
 
@@ -175,8 +175,66 @@ footer{
 .selector {
     background-image: url('./assets/img/selector.svg');
     background-repeat: no-repeat;
-   background-size: contain;
+    background-size: contain;
     width: 24%;
     height: 30rem;
+    margin: 20px auto;
+    display:grid;
+    grid-template-columns: 100px 100px;
+    grid-row: auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 5px;
+    padding-bottom: 2rem;
+    
 
+}
+
+
+/* avatarCard */
+.avatarCard_container {
+  background-color: #111112;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+
+.avatar_image {
+  background-color: #fff;
+  width: 175px;
+  height: 175px;
+  
+}
+
+.avatar_image img {
+  width: inherit;
+  height: inherit;
+}
+
+.avatar_interactions {
+  width: 180px;
+  height: 40px;
+  padding: 0.1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+}
+
+.avatar_interactions span {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+
+}
+
+.avatar_interactions img {
+  width: inherit;
+  height: inherit;
 }

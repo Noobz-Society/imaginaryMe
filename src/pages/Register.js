@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import '../css/Register.css'
+import '../assets/css/Register.css'
 
 export default function Register() {
     const [email, setEmail] = useState("");

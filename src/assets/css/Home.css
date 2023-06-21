@@ -4,7 +4,7 @@
 
 }
 #circle {
-    background-image: url('../../public/assets/img/circle.svg');
+    background-image: url('../../../public/assets/img/circle.svg');
     width: 304.47px;
     height: 304.47px;
     background-repeat: no-repeat;
@@ -40,7 +40,7 @@
 }
 
 #started_button {
-    background-color: #DFE7F7;
+    background-color: #fff;
 }
 
 

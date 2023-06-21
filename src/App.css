@@ -42,6 +42,11 @@
   text-align: center;
 }
 
+.text-failed {
+  color: #C61E44;
+  text-align: center;
+}
+
 /* Header */
 header {
   width: 100%;

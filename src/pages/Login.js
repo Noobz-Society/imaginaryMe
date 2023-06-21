@@ -13,6 +13,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const { handleLogin } = useContext(AuthContext);
     const cookies = new Cookies();
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = (e) => {
         // prevent the form from refreshing the whole page
@@ -43,15 +44,18 @@ export default function Login() {
         
         
         .catch((error) => {
-        error = new Error();
+          if (error.response && error.response.data) {
+            const errorMessages = error.response.data.map((apiError) => apiError.message);
+            setErrorMessage(errorMessages.join(", "));
+          } else {
+            setErrorMessage("An error occurred. Please try again.");
+          }
         });
-        
-      }
+    };
 
     return (
         <div id="login_container">
             <h2>Welcome back !</h2>
-            <div className="jd">
            <form className="login_form">
              {/* email */}
              <label for="email">E-mail</label>
@@ -77,9 +81,9 @@ export default function Login() {
      
              {/* submit button */}
              <input type="submit" value="Sign In" onClick={(e) => handleSubmit(e)}/>
-               
+             {errorMessage && <p className="text-failed">{errorMessage}</p>}
            </form>
-           </div>
+         
           <img src={Chara} alt="chibi_character" id="chibi_character"/>
 
         </div>

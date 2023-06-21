@@ -8,6 +8,7 @@ export default function Register() {
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [register, setRegister] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,9 +29,14 @@ export default function Register() {
           setRegister(true);
         })
         .catch((error) => {
-          error = new Error();
+          if (error.response && error.response.data) {
+            const errorMessages = error.response.data.map((apiError) => apiError.message);
+            setErrorMessage(errorMessages.join(", "));
+          } else {
+            setErrorMessage("An error occurred. Please try again.");
+          }
         });
-      }
+    };
 
     return (
         <div className="register_container">
@@ -75,8 +81,9 @@ export default function Register() {
     
             {/* submit button */}
             <input type="submit" value="Sign up" onClick={(e) => handleSubmit(e)} />
-              
+            {errorMessage && <p className="text-failed">{errorMessage}</p>}
           </form>
+         
         </div>
     )
 }

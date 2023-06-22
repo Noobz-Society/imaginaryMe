@@ -9,6 +9,11 @@ body {
     overflow-x: hidden;
 }
 
+.onlyWhite-header {
+  background-color: #FFFFFF; 
+
+}
+
 .white-background {
   background-color: #FFFFFF; 
 
@@ -58,6 +63,18 @@ button {
   border-radius: 9px;
   font-family: 'Nunito Sans', sans-serif;
   cursor: pointer;
+}
+
+.white-button {
+  background-color: #fff;
+  border: none;
+  text-align: center;
+  width: 150px;
+  height: 45px;
+  border-radius: 9px;
+  font-family: 'Nunito Sans', sans-serif;
+  cursor: pointer;
+
 }
 a {
   text-decoration: none;

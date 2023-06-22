@@ -2,6 +2,8 @@ import React, { useEffect }from 'react'
 import '../assets/css/Profile.css'
 import { AvatarCard } from '../components/AvatarCard'
 import UserPic from '../assets/img/userPic.svg'
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 
 const Profile = () => {
@@ -14,7 +16,13 @@ const Profile = () => {
       };
     }, []);
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  const token = cookies.get("TOKEN");
+  
+  const tokenData = JSON.parse(atob(token.split('.')[1]));
+  const userName = tokenData.name;
+  const userEmail = tokenData.email;
 
   return (
     <div className="profile_container">
@@ -25,7 +33,7 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
           </div>
   
          <div className="user_name_container">
-           <p>Admin</p>
+           <p>{userName}</p>
          </div>
         <div id="user_edit">
           <p>Avatars: 10</p>

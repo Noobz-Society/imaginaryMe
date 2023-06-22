@@ -16,7 +16,7 @@ const Home = () => {
           <div id="home_right_section">
             <p>Create personalized avatars effortlessly! Our website offers a diverse range of customization options for unique and stunning avatar creations. Try it now!</p>
             <div className="centered_button">
-              <button id="started_button"><a href="/create">Get Started !</a></button>
+              <button className="white-button" id="started_button"><a href="/create">Get Started !</a></button>
             </div>
           </div>
       </div>

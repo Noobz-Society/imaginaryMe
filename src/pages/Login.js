@@ -33,11 +33,15 @@ export default function Login() {
         axios(configuration)
         .then((result) => {
           handleLogin(); // Set login status to true
-          
+
+
+          const token = result.data;
+
           // set the cookie
-          cookies.set("TOKEN", result.data, {
+          cookies.set("TOKEN", token, {
               path: "/",
             });
+            
           window.location.href = "/";
           
         })

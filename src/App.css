@@ -60,28 +60,33 @@ header {
 }
 #navigation_container {
   display: flex;
-  align-items: flex-start;
-  padding: 0px 30px;
   flex-direction: row;
   gap: 50rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%; 
+  justify-content: center;
+  width: 100%; 
   position: relative;
   top: 5rem;
-  
-}
-
-#navigation_container {
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
+  
 }
+
 .navigation_content {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   margin-top: 1rem;
+  width: fit-content;
+}
+
+.navigation_content a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
 }
 
 #title {
@@ -89,7 +94,7 @@ header {
   bottom: 3.5rem;
   font-style: normal;
   font-weight: 400;
-  font-size: 120px;
+  font-size: 115px;
   line-height: 174px;
   text-align: center;
   color: #FFFFFF;

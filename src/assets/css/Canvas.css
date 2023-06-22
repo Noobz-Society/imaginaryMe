@@ -5,4 +5,11 @@
     position: relative;
     left: 3%;
     bottom: 4rem;
+    overflow: hidden;
+}
+
+.canvas_container img {
+    margin-top: 1rem;
+    width: 100%;
+    height: 100%;
 }

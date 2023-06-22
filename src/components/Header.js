@@ -66,7 +66,8 @@ const Header = () => {
         </div>
         )}
       </div>
-      <h2 id="title">CharaMe</h2>
+      <h2 id="title">{location.pathname === '/create' ? 'Creation Time' : 'CharaMe'}</h2>
+
   </header>
   )
 }

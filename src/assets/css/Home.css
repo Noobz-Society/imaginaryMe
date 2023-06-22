@@ -1,7 +1,5 @@
 #home_container {
     margin-top: 1rem;
-    margin-bottom: -10rem;
-
 
 }
 #circle {
@@ -59,7 +57,8 @@
     position: relative;
     width: 300px;
     height: 300px;
-    left: 74rem
+    left: 74rem;
+    top: 0.5rem
 
 }
 

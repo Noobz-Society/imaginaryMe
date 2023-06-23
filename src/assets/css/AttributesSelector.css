@@ -1,17 +1,13 @@
-.attributesSelector_container {
-    background: linear-gradient(90deg, rgba(239, 215, 234, 0.3) 0%, #D8ECFF 100%);
-    height: 11rem;
-    width: 88%;
-    display: flex;
-    flex-direction: row;
-    gap: 3rem;
-    justify-content: center;
-    align-items: center;
-   
-}
 
-.attribute {
+.selector_item {
+    width: 4.5rem;
+    height: 4.5rem;
     background-color: #fff;
-    width: 143px;
-    height: 143px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top: 2rem;
+    margin-left: 4.2rem;
+    cursor: pointer;
+    
 }

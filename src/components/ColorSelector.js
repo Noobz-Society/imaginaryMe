@@ -1,5 +1,5 @@
 import React from 'react'
-import '../assets/css/VariantSelector.css'
+import '../assets/css/VariantsSelector.css'
 
 const ColorSelector = () => {
   return (

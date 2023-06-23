@@ -13,6 +13,9 @@ const AdminPanel = () => {
   return (
     <div className="adminPanelContainer">
       <h2>Admin Panel</h2>
+      <div className="users_container">
+
+      </div>
     </div>
   )
 }

@@ -1,14 +1,16 @@
-import React from 'react'
-import '../assets/css/Canvas.css'
-import AvatarExample from '../assets/img/avatarExample.svg'
+import React, { useEffect } from 'react';
+import '../assets/css/Canvas.css';
 
-const Canvas = () => {
+const Canvas = ({ imgSrc }) => {
+  useEffect(() => {
+
+  }, [imgSrc]);
+
   return (
     <div className="canvas_container">
-
-      <img src={AvatarExample} alt="avatar"/>
+     <div dangerouslySetInnerHTML={{ __html: imgSrc }} />
     </div>
   )
 }
 
-export default Canvas
+export default Canvas;

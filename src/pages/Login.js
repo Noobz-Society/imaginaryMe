@@ -6,9 +6,11 @@ import '../assets/css/Login.css'
 import Chara from '../assets/img/chara.svg'
 import { AuthContext } from '../AuthContext';
 
+const uri = process.env.REACT_APP_URI;
 
 
 export default function Login() {
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { handleLogin } = useContext(AuthContext);
@@ -18,11 +20,11 @@ export default function Login() {
     const handleSubmit = (e) => {
         // prevent the form from refreshing the whole page
         e.preventDefault();
+
   
-        
         const configuration = {
             method: "post",
-            url: "http://localhost:4000/auth/login",
+            url: `${uri}/auth/login`,
             data: {
               email,
               password,
@@ -36,6 +38,7 @@ export default function Login() {
 
 
           const token = result.data;
+
 
           // set the cookie
           cookies.set("TOKEN", token, {
@@ -55,6 +58,7 @@ export default function Login() {
             setErrorMessage("An error occurred. Please try again.");
           }
         });
+       
     };
 
     return (

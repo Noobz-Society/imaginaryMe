@@ -3,6 +3,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import '../assets/css/Register.css'
 
+const uri = process.env.REACT_APP_URI;
+
+
 export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -15,7 +18,7 @@ export default function Register() {
         // set configurations
          const configuration = {
              method: "post",
-             url: "http://localhost:4000/auth/register",
+             url: `${uri}/auth/register`,
              data: {
                email,
                name,

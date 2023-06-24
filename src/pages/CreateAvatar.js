@@ -208,6 +208,21 @@ export default function CreateAvatar() {
   });
 }
 
+const randomAvatar = () => {
+  const configuration = {
+    method: "get",
+    url: `${uri}/avatar/create`,
+};
+// make the API call
+axios(configuration)
+.then((result) => {
+  setSvg(result.data)
+})
+.catch((error) => {
+  console.log(error)
+});
+}
+
   useEffect(() => {
     document.body.classList.add('createAvatar-background');
     constructAvatar();
@@ -225,7 +240,7 @@ export default function CreateAvatar() {
         <AttributesSelector attributesArray={attributes} handleAttributeSelect={handleAttributeSelect} />
           <Canvas imgSrc={svg} />
           <div className="createAvatar_buttons_container">
-            <span className="createAvatar_buttons"><img src={RandomizeButton} alt="randomize-icon"/></span>
+            <span className="createAvatar_buttons" onClick={event => randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
             <span className="createAvatar_buttons"><i class="lni lni-checkmark"></i></span>
           </div>

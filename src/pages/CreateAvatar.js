@@ -7,10 +7,14 @@ import AttributesSelector from '../components/AttributesSelector'
 import RandomizeButton from '../assets/img/random.svg'
 import axios from 'axios';
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 const uri = process.env.REACT_APP_URI;
 
 
 export default function CreateAvatar() {
+  const [avatarSavedText, setAvatarSavedText] = useState("");
   const [svg, setSvg] = useState("");
   const [attributes, setAttributes] = useState([]);
   const [variants, setVariants] = useState();
@@ -37,7 +41,6 @@ export default function CreateAvatar() {
   };
 
   const handleVariantSelect = (id) => {
-        //console.log(id)
         const configuration = {
           method: "get",
           url: `${uri}/attribute`,
@@ -237,7 +240,8 @@ axios(configuration)
 const saveAvatar = () => {
   setAvatarSaved(true)
   if(allParams){
-
+      
+    /*
         const configuration = {
           method: "post",
           url: `${uri}/user/save-avatar`,
@@ -277,7 +281,8 @@ const saveAvatar = () => {
       // make the API call
       axios(configuration)
       .then((result) => {
-        setAttributes(result.data);
+        
+        
       
       })
       
@@ -285,8 +290,8 @@ const saveAvatar = () => {
       .catch((error) => {
         console.log(error)
       });
-
-
+*/
+    
   }
   
 }
@@ -296,11 +301,39 @@ const saveAvatar = () => {
     constructAvatar();
     getAttributes();
 
+    const token = cookies.get("TOKEN");
+
+    if(!token) {
+      setAvatarSavedText("avatar downloaded");
+    }else {
+      setAvatarSavedText("Avatar saved")
+
+    }
+
     return () => {
       document.body.classList.remove('createAvatar-background');
     
     };
   }, []);
+
+  useEffect(() => {
+    if (avatarSaved && svg) {
+      // Create a temporary <a> element
+      const downloadLink = document.createElement("a");
+      const svgBlob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+      const svgUrl = URL.createObjectURL(svgBlob);
+      downloadLink.href = svgUrl;
+      downloadLink.download = "avatar.svg";
+  
+      // Trigger a click event on the element to start the download
+      downloadLink.click();
+  
+      // Clean up the URL object
+      URL.revokeObjectURL(svgUrl);
+    }
+  }, [avatarSaved, svg]);
+
+
   
   return (
       <div className="createAvatar_container">

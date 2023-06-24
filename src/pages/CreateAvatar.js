@@ -12,38 +12,118 @@ const uri = process.env.REACT_APP_URI;
 
 export default function CreateAvatar() {
   const [svg, setSvg] = useState("");
-  useEffect(() => {
+  const [attributes, setAttributes] = useState([]);
+  const [variants, setVariants] = useState();
+
+  const [attributeSelected, setAttributeSelected] = useState("");
+  
+  const [body_variant, setBody_variant] = useState("64943f502d9bc32598a3706b");
+  const [body_color, setBody_color] = useState("#FBE0CF");
+  const [eyes_variant, setEyes_variant] = useState("64944b9edea8c6aa848b713a");
+  const [eyes_color, setEyes_color] = useState("#00f");
+  const [nose_variant, setNose_variant] = useState("6494513e7c1939556fd695c2");
+  const [mouth_variant, setMouth_variant] = useState("64954da228eb0d9386e7507b");
+  const [eyebrows_variant, setEyebrows_variant] = useState("6495af47e4f40a2d627b9268");
+  const [eyebrows_color, setEyebrows_color] = useState("#FF0");
+
+
+  const getKeyById = (array, id) => {
+    const item = array.find(obj => obj._id === id);
+    return item ? item.key : null;
+  };
+
+  const handleVariantSelect = (id) => {
+        //console.log(id)
+        const configuration = {
+          method: "get",
+          url: `${uri}/attribute`,
+          
+      };
+
+        // make the API call
+        axios(configuration)
+        .then((result) => {
+
+         let attributeKey = (getKeyById(result.data, attributeSelected));
+
+         if(attributeKey === "corps"){
+          setBody_variant(id)
+
+         }else if(attributeKey === "yeux") {
+          setEyes_variant(id)
+
+         }else if(attributeKey === "nez") {
+          setNose_variant(id)
+          
+         }else if(attributeKey === "bouche") {
+          setMouth_variant(id)
+          
+         }else if(attributeKey === "sourcils") {
+          setEyebrows_variant(id)
+          
+         }else {
+
+         }
+         
+        
+        })
+        
+        
+        .catch((error) => {
+          console.log(error)
+        });
+      
+  }
+
+  const handleColorSelect = (color) => {
+    const configuration = {
+      method: "get",
+      url: `${uri}/attribute`,
+      
+  };
+
+    // make the API call
+    axios(configuration)
+    .then((result) => {
+     
+     let attributeKey = (getKeyById(result.data, attributeSelected));
+
+     if(attributeKey === "corps"){
+      setBody_color(color)
+
+     }else if(attributeKey === "yeux") {
+      setEyes_color(color)
+      
+     }else if(attributeKey === "sourcils") {
+      setEyebrows_color(color)
+      
+     }else {
+
+     }
+     
+    
+    })
+    
+    
+    .catch((error) => {
+      console.log(error)
+    });
+  
+}
+  
+
+  const getAttributes = () => {
 
     const configuration = {
-      method: "post",
-      url: `${uri}/avatar/create`,
-      data: [
-        {
-          variation: "64943f502d9bc32598a3706b",
-          color: "#fbe0cf"
-        },
-        {
-          variation: '64944b9edea8c6aa848b713a',
-          color: '#00f',
-        },
-        {
-          variation: "6494513e7c1939556fd695c2",
-          color: null,
-          colorless: true
-        },
-        {
-          variation: "64954da228eb0d9386e7507b",
-          color: null,
-          colorless: true
-        }
-
-      ],
-    };
+      method: "get",
+      url: `${uri}/attribute`,
+      
+  };
 
   // make the API call
   axios(configuration)
   .then((result) => {
-    setSvg(result.data)
+    setAttributes(result.data);
   
   })
   
@@ -52,11 +132,86 @@ export default function CreateAvatar() {
     console.log(error)
   });
 
+  }
 
-  }, [])
+  const getVariants = (attributeId) => {
+
+        const configuration = {
+          method: "get",
+          url: `${uri}/attribute`,
+          
+      };
+
+      // make the API call
+      axios(configuration)
+      .then((result) => {
+       
+       
+         for (const element of result.data) {
+           if (element._id === attributeId) {
+             setVariants(element);
+             break;
+           }
+          }
+      
+      })
+      
+      
+      .catch((error) => {
+        console.log(error)
+      });
+
+  }
+
+  const handleAttributeSelect = (id) => {
+    setAttributeSelected(id);
+    getVariants(id)
+
+  }
+
+  const constructAvatar = () => {
+    const configuration = {
+      method: "post",
+      url: `${uri}/avatar/create`,
+      data: [
+        {
+          variation: body_variant,
+          color: body_color
+        },
+        {
+          variation: eyes_variant,
+          color: eyes_color,
+        },
+        {
+          variation: nose_variant,
+          color: null,
+          colorless: true
+        },
+        {
+          variation: mouth_variant,
+          color: null,
+          colorless: true
+        },
+        {
+          variation: eyebrows_variant,
+          color: eyebrows_color,
+        }
+      ],
+  };
+  // make the API call
+  axios(configuration)
+  .then((result) => {
+    setSvg(result.data)
+  })
+  .catch((error) => {
+    console.log(error)
+  });
+}
 
   useEffect(() => {
     document.body.classList.add('createAvatar-background');
+    constructAvatar();
+    getAttributes();
 
     return () => {
       document.body.classList.remove('createAvatar-background');
@@ -67,16 +222,16 @@ export default function CreateAvatar() {
   return (
       <div className="createAvatar_container">
         <div className="createAvatar_subcontainer">
-        <AttributesSelector />
+        <AttributesSelector attributesArray={attributes} handleAttributeSelect={handleAttributeSelect} />
           <Canvas imgSrc={svg} />
           <div className="createAvatar_buttons_container">
             <span className="createAvatar_buttons"><img src={RandomizeButton} alt="randomize-icon"/></span>
 
             <span className="createAvatar_buttons"><i class="lni lni-checkmark"></i></span>
           </div>
-          <ColorSelector />
+          <ColorSelector variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar}/>
        </div>
-       <VariantSelector />
+       <VariantSelector variants={variants} handleVariantSelect={handleVariantSelect} constructAvatar={constructAvatar}/>
     </div>
   );
 }

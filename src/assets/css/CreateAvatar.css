@@ -9,12 +9,12 @@
 .createAvatar_subcontainer {
     display: flex;
     flex-direction: row;
-    gap: 7rem;
+    
     align-items: center;
     justify-content: center;
     width: 100%;
-    position: relative;
-    left: 1.2%;
+   
+   
 
 }
 

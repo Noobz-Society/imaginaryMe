@@ -6,6 +6,13 @@ const VariantsSelector = ({ variants, handleVariantSelect, constructAvatar }) =>
     return (
       <div className="variantsSelector_container">
     
+        <div className="attribute"></div>
+        <div className="attribute"></div>
+        <div className="attribute"></div>
+        <div className="attribute"></div>
+        <div className="attribute"></div>
+        <div className="attribute"></div>
+
         </div>
    
     )

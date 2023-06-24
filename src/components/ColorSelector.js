@@ -1,9 +1,23 @@
 import React from 'react'
 import '../assets/css/VariantsSelector.css'
 
-const ColorSelector = ({ variants, handleColorSelect, constructAvatar={constructAvatar}}) => {
+const ColorSelector = ({ variants, handleColorSelect, constructAvatar}) => {
   if (!variants || !variants.variations) {
-    return null
+    return (
+      <div className="selector_colors">
+        
+        <div className="selector_item"></div>
+        <div className="selector_item"></div>
+        <div className="selector_item"></div>
+        <div className="selector_item"></div>
+        <div className="selector_item"></div>
+        <div className="selector_item"></div>
+
+
+        
+
+    </div>
+    )
   }
 
   const handleClick = (color) => {

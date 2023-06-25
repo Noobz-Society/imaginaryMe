@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../assets/css/CreateAvatar.css'
 import VariantSelector from '../components/VariantsSelector'
 import ColorSelector from '../components/ColorSelector'
@@ -6,6 +6,7 @@ import Canvas from '../components/Canvas'
 import AttributesSelector from '../components/AttributesSelector'
 import RandomizeButton from '../assets/img/random.svg'
 import axios from 'axios';
+import { AuthContext } from '../AuthContext'
 
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -13,7 +14,10 @@ const cookies = new Cookies();
 const uri = process.env.REACT_APP_URI;
 
 
+
 export default function CreateAvatar() {
+  const token = cookies.get("TOKEN");
+  const { isLoggedIn, handleLogout } = useContext(AuthContext);
   const [avatarSavedText, setAvatarSavedText] = useState("");
   const [svg, setSvg] = useState("");
   const [attributes, setAttributes] = useState([]);
@@ -30,7 +34,6 @@ export default function CreateAvatar() {
   const [eyebrows_variant, setEyebrows_variant] = useState("6495af47e4f40a2d627b9268");
   const [eyebrows_color, setEyebrows_color] = useState("#FF0");
 
-  const [allParams, setAllParams] = useState(false);
   const [avatarSaved, setAvatarSaved] = useState(false);
   const [shouldConstructAvatar, setShouldConstructAvatar] = useState(true); 
 
@@ -49,7 +52,7 @@ export default function CreateAvatar() {
       };
        if(body_variant && eyes_variant && nose_variant && mouth_variant && eyebrows_variant) {
 
-        setAllParams(true)
+        
 
         // make the API call
         axios(configuration)
@@ -236,6 +239,7 @@ const randomAvatar = () => {
 axios(configuration)
 .then((result) => {
   setSvg(result.data)
+  console.log(result.data)
 })
 .catch((error) => {
   console.log(error)
@@ -245,51 +249,47 @@ axios(configuration)
 }
 
 const saveAvatar = () => {
-  setAvatarSaved(true)
-  if(allParams){
-      
-    /*
-        const configuration = {
-          method: "post",
-          url: `${uri}/user/save-avatar`,
-          data: [
-            {
-              name: "avatar",
+  const  url =  `${uri}/user/save-avatar`;
 
-            },
-             
-            {
-              variation: body_variant,
-              color: body_color
-            },
-            {
-              variation: eyes_variant,
-              color: eyes_color,
-            },
-            {
-              variation: nose_variant,
-              color: null,
-              colorless: true
-            },
-            {
-              variation: mouth_variant,
-              color: null,
-              colorless: true
-            },
-            {
-              variation: eyebrows_variant,
-              color: eyebrows_color,
-            }
-          ],
-          
-          
+      const requestBody = {
+        name: 'avatar',
+        attributes: [
+          {
+            variation: body_variant,
+            color: body_color
+          },
+          {
+            variation: eyes_variant,
+            color: eyes_color,
+          },
+          {
+            variation: nose_variant,
+            color: null,
+          },
+          {
+            variation: mouth_variant,
+            color: null,
+          },
+          {
+            variation: eyebrows_variant,
+            color: eyebrows_color,
+          }
+
+        ],
       };
+    
+       
+     // make the API call
+      axios.post(url, requestBody, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
 
-      // make the API call
-      axios(configuration)
       .then((result) => {
         
-        
+       // console.log(result)
       
       })
       
@@ -297,10 +297,8 @@ const saveAvatar = () => {
       .catch((error) => {
         console.log(error)
       });
-*/
-    
-  }
-  
+
+ 
 }
 
 
@@ -308,16 +306,6 @@ const saveAvatar = () => {
     document.body.classList.add('createAvatar-background');
     constructAvatar();
     getAttributes();
-
-    const token = cookies.get("TOKEN");
-
-    if(!token) {
-      setAvatarSavedText("avatar downloaded");
-    }else {
-      setAvatarSavedText("Avatar saved")
-
-    }
-
     return () => {
       document.body.classList.remove('createAvatar-background');
     
@@ -325,11 +313,13 @@ const saveAvatar = () => {
   }, []);
 
  const download = () => {
+  saveAvatar();
   const element = document.createElement("a");
   const file = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
   element.href = URL.createObjectURL(file);
   element.download = "avatar.svg";
   element.click();
+  setAvatarSaved(true);
 };
 
 
@@ -340,13 +330,13 @@ const saveAvatar = () => {
         <AttributesSelector attributesArray={attributes} handleAttributeSelect={handleAttributeSelect} />
           <Canvas imgSrc={svg} />
           <div className="createAvatar_buttons_container">
-            <span className="createAvatar_buttons" onClick={event => randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
+            <span className="createAvatar_buttons" onClick={() =>randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
             <span className="createAvatar_buttons" onClick={download}><i class="lni lni-checkmark"></i></span>
           </div>
           <ColorSelector variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar }/>
        </div>
-       {avatarSaved && <p>Avatar saved</p>}
+       {avatarSaved && <p id="saved_text">Avatar saved</p>}
        
        <VariantSelector variants={variants} handleVariantSelect={handleVariantSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar}/>
     </div>

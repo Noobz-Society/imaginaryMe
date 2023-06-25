@@ -1,7 +1,7 @@
 import React from 'react'
 import '../assets/css/VariantsSelector.css'
 
-const ColorSelector = ({ variants, handleColorSelect, constructAvatar}) => {
+const ColorSelector = ({ variants, handleColorSelect, constructAvatar, setShouldConstructAvatar }) => {
   if (!variants || !variants.variations) {
     return (
       <div className="selector_colors">
@@ -21,8 +21,10 @@ const ColorSelector = ({ variants, handleColorSelect, constructAvatar}) => {
   }
 
   const handleClick = (color) => {
-    handleColorSelect(color); // Execute the first function
-    constructAvatar(); // Execute the second function
+    setShouldConstructAvatar(true)
+    handleColorSelect(color); 
+    constructAvatar(); 
+    
   };
   return (
     <div className="selector_colors">

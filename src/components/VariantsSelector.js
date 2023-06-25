@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../assets/css/VariantsSelector.css';
 
-const VariantsSelector = ({ variants, handleVariantSelect, constructAvatar }) => {
+const VariantsSelector = ({ variants, handleVariantSelect, constructAvatar, setShouldConstructAvatar }) => {
   useEffect(() => {
     constructAvatar();
   }, [constructAvatar, handleVariantSelect]); 
@@ -25,6 +25,7 @@ const VariantsSelector = ({ variants, handleVariantSelect, constructAvatar }) =>
   
 
   const handleClick = (variantId) => {
+    setShouldConstructAvatar(true)
     handleVariantSelect(variantId);
   };
 

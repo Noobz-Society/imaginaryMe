@@ -32,6 +32,7 @@ export default function CreateAvatar() {
 
   const [allParams, setAllParams] = useState(false);
   const [avatarSaved, setAvatarSaved] = useState(false);
+  const [shouldConstructAvatar, setShouldConstructAvatar] = useState(true); 
 
 
 
@@ -184,6 +185,7 @@ export default function CreateAvatar() {
   }
 
   const constructAvatar = () => {
+    if (shouldConstructAvatar) {
     const configuration = {
       method: "post",
       url: `${uri}/avatar/create`,
@@ -220,9 +222,12 @@ export default function CreateAvatar() {
   .catch((error) => {
     console.log(error)
   });
+
+}
 }
 
 const randomAvatar = () => {
+  setShouldConstructAvatar(false);
   const configuration = {
     method: "get",
     url: `${uri}/avatar/create`,
@@ -235,6 +240,8 @@ axios(configuration)
 .catch((error) => {
   console.log(error)
 });
+
+
 }
 
 const saveAvatar = () => {
@@ -337,11 +344,11 @@ const saveAvatar = () => {
 
             <span className="createAvatar_buttons" onClick={download}><i class="lni lni-checkmark"></i></span>
           </div>
-          <ColorSelector variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar}/>
+          <ColorSelector variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar}/>
        </div>
        {avatarSaved && <p>Avatar saved</p>}
        
-       <VariantSelector variants={variants} handleVariantSelect={handleVariantSelect} constructAvatar={constructAvatar}/>
+       <VariantSelector variants={variants} handleVariantSelect={handleVariantSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar}/>
     </div>
   );
 }

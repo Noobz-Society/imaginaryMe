@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import '../assets/css/VariantsSelector.css';
 
 const VariantsSelector = ({ variants, handleVariantSelect, constructAvatar }) => {
+  useEffect(() => {
+    constructAvatar();
+  }, [constructAvatar, handleVariantSelect]); 
+
   if (!variants || !variants.variations) {
     return (
       <div className="variantsSelector_container">
@@ -19,16 +23,17 @@ const VariantsSelector = ({ variants, handleVariantSelect, constructAvatar }) =>
   }
 
   
+
   const handleClick = (variantId) => {
-    handleVariantSelect(variantId); // Execute the first function
-    constructAvatar(); // Execute the second function
+    handleVariantSelect(variantId);
   };
 
+ 
   return (
     <div className="variantsSelector_container">
       
       {variants.variations.map(variant => (
-        <div className="attribute" key={variant._id} onClick={event => handleClick(variant._id)}>
+        <div className="attribute" key={variant._id} onClick={() => handleClick(variant._id)}>
           <div dangerouslySetInnerHTML={{ __html: variant.svg }} />
         </div>
       ))}

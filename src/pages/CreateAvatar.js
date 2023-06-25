@@ -296,6 +296,7 @@ const saveAvatar = () => {
   
 }
 
+
   useEffect(() => {
     document.body.classList.add('createAvatar-background');
     constructAvatar();
@@ -316,22 +317,13 @@ const saveAvatar = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (avatarSaved && svg) {
-      // Create a temporary <a> element
-      const downloadLink = document.createElement("a");
-      const svgBlob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
-      const svgUrl = URL.createObjectURL(svgBlob);
-      downloadLink.href = svgUrl;
-      downloadLink.download = "avatar.svg";
-  
-      // Trigger a click event on the element to start the download
-      downloadLink.click();
-  
-      // Clean up the URL object
-      URL.revokeObjectURL(svgUrl);
-    }
-  }, [avatarSaved, svg]);
+ const download = () => {
+  const element = document.createElement("a");
+  const file = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+  element.href = URL.createObjectURL(file);
+  element.download = "avatar.svg";
+  element.click();
+};
 
 
   
@@ -343,7 +335,7 @@ const saveAvatar = () => {
           <div className="createAvatar_buttons_container">
             <span className="createAvatar_buttons" onClick={event => randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
-            <span className="createAvatar_buttons" onClick={event => saveAvatar()}><i class="lni lni-checkmark"></i></span>
+            <span className="createAvatar_buttons" onClick={download}><i class="lni lni-checkmark"></i></span>
           </div>
           <ColorSelector variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar}/>
        </div>

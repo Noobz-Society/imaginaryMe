@@ -344,7 +344,7 @@ const saveAvatar = () => {
 
             <span className="createAvatar_buttons" onClick={download}><i class="lni lni-checkmark"></i></span>
           </div>
-          <ColorSelector variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar}/>
+          <ColorSelector variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar }/>
        </div>
        {avatarSaved && <p>Avatar saved</p>}
        

@@ -32,9 +32,9 @@
 .selector_colors {
     background-image: url('../../assets/img/selector.svg');
     background-repeat: no-repeat;
-    background-size: cover;
-    width: 20%;
-    height: fit-content;
+    background-size: contain;
+    width: 24%;
+    height: 30rem;
     margin: 20px auto;
     display:grid;
     grid-template-columns: 100px 100px;
@@ -45,15 +45,16 @@
     
 }
 
-.selector_item {
-    width: 4.5rem;
-    height: 4.5rem;
+.color_item {
+    width: 3.5rem;
+    height: 3.5rem;
     background-color: #fff;
     display:flex;
     align-items:center;
     justify-content:center;
     margin-top: 2rem;
-    margin-left: 4.2rem;
+    margin-left: 5rem;
     cursor: pointer;
+    border-radius: 50px;
     
 }

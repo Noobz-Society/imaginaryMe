@@ -6,12 +6,12 @@ const ColorSelector = ({ variants, handleColorSelect, constructAvatar, setShould
     return (
       <div className="selector_colors">
         
-        <div className="selector_item"></div>
-        <div className="selector_item"></div>
-        <div className="selector_item"></div>
-        <div className="selector_item"></div>
-        <div className="selector_item"></div>
-        <div className="selector_item"></div>
+        <div className="color_item"></div>
+        <div className="color_item"></div>
+        <div className="color_item"></div>
+        <div className="color_item"></div>
+        <div className="color_item"></div>
+        <div className="color_item"></div>
 
 
         
@@ -30,7 +30,7 @@ const ColorSelector = ({ variants, handleColorSelect, constructAvatar, setShould
     <div className="selector_colors">
         {variants.colors.map(color => (
           <div
-            className="selector_item"
+            className="color_item"
             key={color}
             style={{ backgroundColor: color }}
             onClick={event =>  handleClick(color)}

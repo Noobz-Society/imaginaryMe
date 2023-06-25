@@ -190,9 +190,9 @@ footer{
 .selector {
     background-image: url('./assets/img/selector.svg');
     background-repeat: no-repeat;
-    background-size: cover;
-    width: 20%;
-    height: fit-content;
+    background-size: contain;
+    width: 24%;
+    height: 30rem;
     margin: 20px auto;
     display:grid;
     grid-template-columns: 100px 100px;
@@ -200,6 +200,7 @@ footer{
     grid-column-gap: 10px;
     grid-row-gap: 5px;
     padding-bottom: 2rem;
+    
 
 }
 

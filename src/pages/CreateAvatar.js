@@ -17,7 +17,7 @@ const uri = process.env.REACT_APP_URI;
 
 export default function CreateAvatar() {
   const token = cookies.get("TOKEN");
-  const { isLoggedIn, handleLogout } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const [avatarSavedText, setAvatarSavedText] = useState("");
   const [svg, setSvg] = useState("");
   const [attributes, setAttributes] = useState([]);
@@ -29,13 +29,15 @@ export default function CreateAvatar() {
   const [body_color, setBody_color] = useState("#FBE0CF");
   const [eyes_variant, setEyes_variant] = useState("64944b9edea8c6aa848b713a");
   const [eyes_color, setEyes_color] = useState("#00f");
-  const [nose_variant, setNose_variant] = useState("6494513e7c1939556fd695c2");
-  const [mouth_variant, setMouth_variant] = useState("64954da228eb0d9386e7507b");
-  const [eyebrows_variant, setEyebrows_variant] = useState("6495af47e4f40a2d627b9268");
+  const [nose_variant, setNose_variant] = useState("64997b7ebcf4edff4f291f5f");
+  const [mouth_variant, setMouth_variant] = useState("64997b97bcf4edff4f291f65");
+  const [eyebrows_variant, setEyebrows_variant] = useState("64997baabcf4edff4f291f6d");
   const [eyebrows_color, setEyebrows_color] = useState("#FF0");
 
   const [avatarSaved, setAvatarSaved] = useState(false);
-  const [shouldConstructAvatar, setShouldConstructAvatar] = useState(true); 
+  const [shouldConstructAvatar, setShouldConstructAvatar] = useState(true);
+  const [resize, setResize] = useState(false);
+  
 
 
 
@@ -60,19 +62,19 @@ export default function CreateAvatar() {
 
          let attributeKey = (getKeyById(result.data, attributeSelected));
 
-         if(attributeKey === "corps"){
-          setBody_variant(id)
+         if(attributeKey === "body"){
+          setBody_variant(id);
 
-         }else if(attributeKey === "yeux") {
-          setEyes_variant(id)
+         }else if(attributeKey === "eyes") {
+          setEyes_variant(id);
 
-         }else if(attributeKey === "nez") {
-          setNose_variant(id)
+         }else if(attributeKey === "nose") {
+          setNose_variant(id);
           
-         }else if(attributeKey === "bouche") {
-          setMouth_variant(id)
+         }else if(attributeKey === "mouth") {
+          setMouth_variant(id);
           
-         }else if(attributeKey === "sourcils") {
+         }else if(attributeKey === "eyebrows") {
           setEyebrows_variant(id)
           
          }else {
@@ -106,13 +108,13 @@ export default function CreateAvatar() {
      
      let attributeKey = (getKeyById(result.data, attributeSelected));
 
-     if(attributeKey === "corps"){
+     if(attributeKey === "body"){
       setBody_color(color)
 
-     }else if(attributeKey === "yeux") {
+     }else if(attributeKey === "eyes") {
       setEyes_color(color)
       
-     }else if(attributeKey === "sourcils") {
+     }else if(attributeKey === "eyebrows") {
       setEyebrows_color(color)
       
      }else {
@@ -238,8 +240,23 @@ const randomAvatar = () => {
 // make the API call
 axios(configuration)
 .then((result) => {
-  setSvg(result.data)
-  console.log(result.data)
+  let attributes = result.data.attributes;
+
+  //set the attributes
+  setBody_variant(attributes[0]._id);
+  setEyes_variant(attributes[1]._id);
+  setNose_variant(attributes[2]._id);
+  setMouth_variant(attributes[3]._id);
+  setEyebrows_variant(attributes[4]._id);
+
+
+  setBody_color(attributes[0].color);
+  setEyes_color(attributes[1].color);
+  setEyebrows_color(attributes[4].color);
+  setSvg(result.data.svg)
+
+  console.log(attributes)
+  
 })
 .catch((error) => {
   console.log(error)
@@ -253,6 +270,7 @@ const saveAvatar = () => {
 
       const requestBody = {
         name: 'avatar',
+        isPublic: true,
         attributes: [
           {
             variation: body_variant,
@@ -304,6 +322,7 @@ const saveAvatar = () => {
 
   useEffect(() => {
     document.body.classList.add('createAvatar-background');
+    handleAttributeSelect("64943f502d9bc32598a3706a")
     constructAvatar();
     getAttributes();
     return () => {
@@ -312,33 +331,58 @@ const saveAvatar = () => {
     };
   }, []);
 
- const download = () => {
-  saveAvatar();
+ const handleValidate = () => {
+  setAvatarSaved(true)
+  if(!isLoggedIn) {
+    setAvatarSavedText("You are not logged in, your avatar will not be saved")
+    
+
+  }else {
+    saveAvatar();
+    setAvatarSavedText("Avatar saved")
+   
+
+  }
+  
+  /*
   const element = document.createElement("a");
   const file = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
   element.href = URL.createObjectURL(file);
   element.download = "avatar.svg";
   element.click();
   setAvatarSaved(true);
+  */
 };
+
+const download = () => {
+  const element = document.createElement("a");
+  const file = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+  element.href = URL.createObjectURL(file);
+  element.download = "avatar.svg";
+  element.click();
+  setAvatarSaved(true);
+
+}
 
 
   
   return (
       <div className="createAvatar_container">
         <div className="createAvatar_subcontainer">
-        <AttributesSelector attributesArray={attributes} handleAttributeSelect={handleAttributeSelect} />
+        <AttributesSelector attributesArray={attributes} handleAttributeSelect={handleAttributeSelect} setAvatarSaved={setAvatarSaved} />
           <Canvas imgSrc={svg} />
           <div className="createAvatar_buttons_container">
             <span className="createAvatar_buttons" onClick={() =>randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
-            <span className="createAvatar_buttons" onClick={download}><i class="lni lni-checkmark"></i></span>
+            <span className="createAvatar_buttons" onClick={handleValidate}><i class="lni lni-checkmark"></i></span>
           </div>
-          <ColorSelector variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar }/>
+          <ColorSelector variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar} setAvatarSaved={setAvatarSaved}/>
        </div>
-       {avatarSaved && <p id="saved_text">Avatar saved</p>}
+       {avatarSaved && <div id="saved"><p id="saved_text">{avatarSavedText}</p>
+        <button  onClick={() =>download()}>Download avatar</button></div>
+       }
        
-       <VariantSelector variants={variants} handleVariantSelect={handleVariantSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar}/>
+       <VariantSelector variants={variants} handleVariantSelect={handleVariantSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar} setAvatarSaved={setAvatarSaved} resize={resize}/>
     </div>
   );
 }

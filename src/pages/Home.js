@@ -1,17 +1,48 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react';
 import '../assets/css/Home.css'
-import ExampleImage from '../assets/img/example.svg'
 import BottomElipse from '../assets/img/bottomElipse.svg'
 import BottomCircle from '../assets/img/bottomCircle.svg'
+import axios from 'axios';
+
+const uri = process.env.REACT_APP_URI;
+
 
 
 const Home = () => {
+  const [svg, setSvg] = useState("");
+
+  const randomAvatar = () => {
+        const configuration = {
+          method: "get",
+          url: `${uri}/avatar/create`,
+      };
+      // make the API call
+      axios(configuration)
+      .then((result) => {
+        setSvg(result.data.svg)
+      
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  
+  }
+
+  useEffect(() => {
+    //setTimeout(() => {
+      randomAvatar();
+   // }, "1000");
+   
+  },[] )
+
+  
+  
   return (
     <div id="home_container">
       <div className="flex_container">
           <div id="home_left_section">
             <div id="circle"></div>
-            <div id="example_container"><img src={ExampleImage} alt="example"/></div>
+            <div id="example_container"><div dangerouslySetInnerHTML={{ __html: svg }} /></div>
           </div>
           <div id="home_right_section">
             <p>Create personalized avatars effortlessly! Our website offers a diverse range of customization options for unique and stunning avatar creations. Try it now!</p>

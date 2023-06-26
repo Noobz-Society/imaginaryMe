@@ -11,3 +11,7 @@
     cursor: pointer;
     
 }
+
+.selector_item.active {
+    border: 2px solid #1445B0;
+  }

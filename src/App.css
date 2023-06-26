@@ -94,15 +94,41 @@ header {
   bottom: 3.5rem;
   font-style: normal;
   font-weight: 400;
-  font-size: 100px;
+  font-size:8vw;
   line-height: 174px;
   text-align: center;
   color: #FFFFFF;
 
 }
 
-@media (max-width: 1001px) {
-  
+.burger{
+  font-size: 2rem;
+  color: #fff;
+  display: none;
+  border: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  right: 25px;
+ 
+}
+
+@media (max-width: 1162px) {
+  header {
+    background-image: none!important;
+  }
+  #title {
+    margin-top: 5rem;
+  }
+  .navigation_content {
+    display: none;
+  }
+
+  .burger{
+    display: block;
+    
+  }
  
 }
 

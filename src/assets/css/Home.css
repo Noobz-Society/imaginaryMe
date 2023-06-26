@@ -10,14 +10,31 @@
 }
 
 #example_container {
-    width: 500px;
-    height: 500px;
+    background-image: url('../img/exampleBackground.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 400px;
+    height: 400px;
     position: relative;
     left: 170px;
     bottom: 20rem;
+    contain: content;
+    overflow-y: hidden;
+
+    
 
 }
 
+#example_container svg {
+    width: inherit;
+    height: 390px;
+    
+
+    
+    
+
+
+}
 .flex_container {
     display: flex;
     flex-direction: row;

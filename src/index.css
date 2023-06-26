@@ -5,8 +5,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #111112;
-  max-width: 100%;
-    overflow-x: hidden;
+  width: 100%;
+  padding: 0;
+  overflow-x: hidden;
+  contain: content;
+    
 }
 
 .onlyWhite-header {
@@ -16,6 +19,7 @@ body {
 
 .white-background {
   background-color: #FFFFFF; 
+
 
 }
 
@@ -28,6 +32,18 @@ body {
 .createAvatar-background {
   background-color: #FFFFFF; 
 
+}
+
+.createAvatar-background #title{
+  font-size:7vw;
+
+}
+
+@media (max-width: 1162px) {
+  .createAvatar-background #title{
+   color: #000;
+  }
+ 
 }
 
 .createAvatar-background header{ 

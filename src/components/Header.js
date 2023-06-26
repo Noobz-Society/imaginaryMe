@@ -36,13 +36,13 @@ const Header = () => {
   return (
    <header>
       <div id="navigation_container">
+      <div className="burger"><i class="lni lni-menu"></i></div>
         <div className="navigation_content">
           <Link to="/" className={isLinkActive("/")}>Home</Link>
           <Link to="/create" className={isLinkActive("/create")}>Create</Link>
           <Link to="/community" className={isLinkActive("/community")}>Community</Link>
-      
         </div>
-        
+       
         {isLoggedIn ? (
         <div className="navigation_content">
           <Link to="/profile" className={isLinkActive("/profile")}>Profile</Link>
@@ -55,7 +55,7 @@ const Header = () => {
               <></>
            )}
       
-            
+     
         </div>
         ) : (
           <div className="navigation_content">
@@ -65,6 +65,7 @@ const Header = () => {
 
         </div>
         )}
+        
       </div>
       <h2 id="title">{location.pathname === '/create' ? 'Creation Time' : 'CharaMe'}</h2>
 

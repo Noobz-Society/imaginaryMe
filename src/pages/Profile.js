@@ -78,7 +78,7 @@ const Profile = () => {
          <p>{userEmail}</p>
         <div id="user_edit">
           <p>Avatars: {avatarArray.length}</p>
-          <p>Likes: 42</p>
+          <p>Likes: 0</p>
           <button><a href="/editUser">Edit user profile</a></button>
         </div>
          <div className="userAvatars_container">

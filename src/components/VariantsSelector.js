@@ -44,7 +44,7 @@ const VariantsSelector = ({ variants, handleVariantSelect, constructAvatar, setS
         className={`attribute${isSelected === variant._id ? ' active' : ''}`}
         key={variant._id}
         onClick={() => handleClick(variant._id)}
-        ><div className={`svg${resize === true ? 'resized' : ''}`} dangerouslySetInnerHTML={{ __html: variant.svg }} /></div>
+        ><div  className={`svg${resize === true ? 'resized' : ''}`} dangerouslySetInnerHTML={{ __html: variant.svg }} /></div>
       ))}
     </div>
   );

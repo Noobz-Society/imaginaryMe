@@ -11,11 +11,11 @@ const uri = process.env.REACT_APP_URI;
 
 
 
-export const CommunityCard = () => {
+export const CommunityCard = ({ avatar }) => {
  
     const [likeImage, setLikeImage] = useState(Like);
     const [dislikeImage, setDislikeImage] = useState(Dislike);
-    //const [svg, setSvg] = useState("");
+    const [svg, setSvg] = useState("");
   
   
   
@@ -31,7 +31,7 @@ export const CommunityCard = () => {
   
     }
   
-    /*
+    const avatarAttributes = avatar.attributes;
   
     const getAvatar = () => {
       const configuration = {
@@ -57,6 +57,10 @@ export const CommunityCard = () => {
           {
             variation: avatarAttributes[4].variation,
             color: avatarAttributes[4].color,
+          },
+          {
+            variation: avatarAttributes[5].variation,
+            color: avatarAttributes[5].color,
           }
         ],
     };
@@ -75,12 +79,29 @@ export const CommunityCard = () => {
     useEffect(() => {
       getAvatar()
     })
-  */
-    
+
+    if (!avatar) {
       return (
         <div className="avatarCard_container">
             <div className="avatar_image">
                <img src={UserPic} alt="user_avatar"/>
+            </div>
+            <div className="avatar_interactions">
+                <span><img src={likeImage} alt="like" onClick={handleLike}/></span>
+                <span><img src={dislikeImage} alt="dislike" onClick={handleDislike}/></span>
+                <span><img src={Copy} alt="copy"/></span>
+                <span><img src={Customize} alt="customize"/></span>
+                
+            </div>
+        </div>
+      )
+    }
+  
+    
+      return (
+        <div className="avatarCard_container">
+            <div className="avatar_image">
+             <div dangerouslySetInnerHTML={{ __html: svg }} />
             </div>
             <div className="avatar_interactions">
                 <span><img src={likeImage} alt="like" onClick={handleLike}/></span>

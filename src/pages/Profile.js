@@ -38,7 +38,6 @@ const Profile = () => {
     axios(configuration)
     .then((result) => {
      
-
       setAvatarArray(result.data);
 
     

@@ -11,10 +11,10 @@ const uri = process.env.REACT_APP_URI;
 export default function Community() {
   const token = cookies.get("TOKEN");
 
-  const [svg, setSvg] = useState("");
+  const [avatarArray, setAvatarArray] = useState([]);
  
 
-  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14];
+  
 
   const getAVatars = () => {
 
@@ -29,8 +29,8 @@ export default function Community() {
   // make the API call
   axios(configuration)
   .then((result) => {
-    console.log(result.data)
-    //setSvg(result.data)
+    
+    setAvatarArray(result.data)
   })
   .catch((error) => {
     console.log(error)
@@ -52,8 +52,8 @@ useEffect(() => {
       <div className="community_container">
         <div className="community_subcontainer">
           {
-            cards.map((card, index) => (
-              <CommunityCard key={index} card={card} />
+            avatarArray.map((avatar, index) => (
+              <CommunityCard key={index} avatar={avatar} />
             ))
           }
       </div>

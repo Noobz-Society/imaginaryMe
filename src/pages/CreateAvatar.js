@@ -7,6 +7,7 @@ import AttributesSelector from '../components/AttributesSelector'
 import RandomizeButton from '../assets/img/random.svg'
 import axios from 'axios';
 import { AuthContext } from '../AuthContext'
+import { useLocation } from 'react-router-dom';
 
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
@@ -16,6 +17,20 @@ const uri = process.env.REACT_APP_URI;
 
 
 export default function CreateAvatar() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  
+  const bodyVariant = queryParams.get('bodyVariant');
+  const bodyColor = queryParams.get('bodyColor');
+  const eyesVariant = queryParams.get('eyesVariant');
+  const eyesColor = queryParams.get('eyesColor');
+  const noseVariant = queryParams.get('noseVariant');
+  const mouthVariant = queryParams.get('mouthVariant');
+  const eyebrowsVariant = queryParams.get('eyebrowsVariant');
+  const eyebrowsColor = queryParams.get('eyebrowsColor');
+  const hairVariant = queryParams.get('hairVariant');
+  const hairColor = queryParams.get('hairColor');
+
   const token = cookies.get("TOKEN");
   const { isLoggedIn } = useContext(AuthContext);
   const [avatarSavedText, setAvatarSavedText] = useState("");
@@ -25,18 +40,21 @@ export default function CreateAvatar() {
 
   const [attributeSelected, setAttributeSelected] = useState("");
   
-  const [body_variant, setBody_variant] = useState("64943f502d9bc32598a3706b");
-  const [body_color, setBody_color] = useState("#FBE0CF");
-  const [eyes_variant, setEyes_variant] = useState("64944b9edea8c6aa848b713a");
-  const [eyes_color, setEyes_color] = useState("#00f");
-  const [nose_variant, setNose_variant] = useState("64997b7ebcf4edff4f291f5f");
-  const [mouth_variant, setMouth_variant] = useState("64997b97bcf4edff4f291f65");
-  const [eyebrows_variant, setEyebrows_variant] = useState("64997baabcf4edff4f291f6d");
-  const [eyebrows_color, setEyebrows_color] = useState("#FF0");
+   const [body_variant, setBody_variant] = useState(bodyVariant || "64943f502d9bc32598a3706b");
+  const [body_color, setBody_color] = useState(bodyColor || "#ffb790");
+  const [eyes_variant, setEyes_variant] = useState(eyesVariant || "64944b9edea8c6aa848b713a");
+  const [eyes_color, setEyes_color] = useState(eyesColor || "#00f");
+  const [nose_variant, setNose_variant] = useState(noseVariant || "64997b7ebcf4edff4f291f5f");
+  const [mouth_variant, setMouth_variant] = useState(mouthVariant || "64997b97bcf4edff4f291f65");
+  const [eyebrows_variant, setEyebrows_variant] = useState(eyebrowsVariant || "64997baabcf4edff4f291f6d");
+  const [eyebrows_color, setEyebrows_color] = useState(eyebrowsColor || "#FF0");
+  const [hair_variant, setHair_variant] = useState( hairVariant || "6499ae949e2fbcb1a877a5a7");
+  const [hair_color, setHair_color] = useState( hairColor || "#553425");
 
   const [avatarSaved, setAvatarSaved] = useState(false);
   const [shouldConstructAvatar, setShouldConstructAvatar] = useState(true);
   const [resize, setResize] = useState(false);
+  const [visibility, setVisibility] = useState(false);
   
 
 
@@ -77,6 +95,9 @@ export default function CreateAvatar() {
          }else if(attributeKey === "eyebrows") {
           setEyebrows_variant(id)
           
+         }else if(attributeKey === "hair") {
+          setHair_variant(id)
+
          }else {
 
          }
@@ -116,6 +137,9 @@ export default function CreateAvatar() {
       
      }else if(attributeKey === "eyebrows") {
       setEyebrows_color(color)
+
+     }else if(attributeKey === "hair") {
+        setHair_color(color)
       
      }else {
 
@@ -216,6 +240,10 @@ export default function CreateAvatar() {
         {
           variation: eyebrows_variant,
           color: eyebrows_color,
+        },
+        {
+          variation: hair_variant,
+          color: hair_color,
         }
       ],
   };
@@ -233,6 +261,7 @@ export default function CreateAvatar() {
 
 const randomAvatar = () => {
   setShouldConstructAvatar(false);
+  setAvatarSaved(false)
   const configuration = {
     method: "get",
     url: `${uri}/avatar/create`,
@@ -248,14 +277,16 @@ axios(configuration)
   setNose_variant(attributes[2]._id);
   setMouth_variant(attributes[3]._id);
   setEyebrows_variant(attributes[4]._id);
+  setHair_variant(attributes[5]._id);
 
 
   setBody_color(attributes[0].color);
   setEyes_color(attributes[1].color);
   setEyebrows_color(attributes[4].color);
+  setHair_color(attributes[5].color);
   setSvg(result.data.svg)
 
-  console.log(attributes)
+  //console.log(attributes)
   
 })
 .catch((error) => {
@@ -267,6 +298,7 @@ axios(configuration)
 
 const saveAvatar = () => {
   const  url =  `${uri}/user/save-avatar`;
+ 
 
       const requestBody = {
         name: 'avatar',
@@ -291,6 +323,10 @@ const saveAvatar = () => {
           {
             variation: eyebrows_variant,
             color: eyebrows_color,
+          },
+          {
+            variation: hair_variant,
+            color: hair_color,
           }
 
         ],
@@ -307,7 +343,7 @@ const saveAvatar = () => {
 
       .then((result) => {
         
-       // console.log(result)
+       //console.log(result)
       
       })
       
@@ -322,6 +358,7 @@ const saveAvatar = () => {
 
   useEffect(() => {
     document.body.classList.add('createAvatar-background');
+    console.log(bodyVariant)
     handleAttributeSelect("64943f502d9bc32598a3706a")
     constructAvatar();
     getAttributes();
@@ -344,14 +381,6 @@ const saveAvatar = () => {
 
   }
   
-  /*
-  const element = document.createElement("a");
-  const file = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
-  element.href = URL.createObjectURL(file);
-  element.download = "avatar.svg";
-  element.click();
-  setAvatarSaved(true);
-  */
 };
 
 const download = () => {
@@ -364,25 +393,25 @@ const download = () => {
 
 }
 
-
+ // {isLoggedIn && <div className="visibility"><button onClick={() =>setVisibility(true)}>Public</button> <button  onClick={() =>setVisibility(false)}>Private</button></div>}
   
   return (
       <div className="createAvatar_container">
         <div className="createAvatar_subcontainer">
-        <AttributesSelector attributesArray={attributes} handleAttributeSelect={handleAttributeSelect} setAvatarSaved={setAvatarSaved} />
-          <Canvas imgSrc={svg} />
+        <AttributesSelector id="attribute_selector" attributesArray={attributes} handleAttributeSelect={handleAttributeSelect} setAvatarSaved={setAvatarSaved} />
+          <Canvas id="canvas_container" imgSrc={svg} />
           <div className="createAvatar_buttons_container">
             <span className="createAvatar_buttons" onClick={() =>randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
             <span className="createAvatar_buttons" onClick={handleValidate}><i class="lni lni-checkmark"></i></span>
           </div>
-          <ColorSelector variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar} setAvatarSaved={setAvatarSaved}/>
+          <ColorSelector id="color_selector" variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar} setAvatarSaved={setAvatarSaved}/>
        </div>
        {avatarSaved && <div id="saved"><p id="saved_text">{avatarSavedText}</p>
         <button  onClick={() =>download()}>Download avatar</button></div>
        }
        
-       <VariantSelector variants={variants} handleVariantSelect={handleVariantSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar} setAvatarSaved={setAvatarSaved} resize={resize}/>
+       <VariantSelector id="variant_selector" variants={variants} handleVariantSelect={handleVariantSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar} setAvatarSaved={setAvatarSaved} resize={resize}/>
     </div>
   );
 }

@@ -3,6 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: -6rem;
+    
    
     
 }
@@ -12,7 +16,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-left: 2rem;
+    gap: 1rem;
+   
    
 }
 
@@ -40,6 +45,18 @@
     font-weight: bold
   }
 
+.createAvatar_buttons_mobile {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    bottom: 7rem;
+    display: none;
+}
+
   
 #saved {
     position: relative;
@@ -47,16 +64,60 @@
     bottom: 6rem;
 }
 
-@media (max-width: 1162px) {
-   
+
+@media (max-width: 970px) {
     .createAvatar_container {
-        margin-top: -15rem;
+        gap: 0.5rem;
     }
-    .createAvatar_subcontainer {
-        flex-direction: column;
-        gap: 1rem;
+
+    .createAvatar_buttons_mobile {
+        right: 0.5rem;
     }
-  
+ 
+}
+
+
+@media (max-width: 1205px) {
+
+    .createAvatar_buttons_container {
+        display: none;
+       
+    }
+
+    .createAvatar_buttons_mobile {
+        display: flex;
+        right: -1rem;
+    }
+
+ 
+}
+
+@media (max-width: 1042px) {
+
+
+    .createAvatar_buttons_mobile {
+        right: 2rem;
+    }
+
+ 
+}
+
+
+@media (max-width: 800px) {
+
+    
+    .createAvatar_buttons_mobile {
+        right: 3.5rem;
+       
+    }
+ 
+}
+
+@media (max-width: 590px) {
+
+    
    
-  }
-  
+ 
+}
+
+

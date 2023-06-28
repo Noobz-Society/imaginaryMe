@@ -20,7 +20,7 @@ export default function Community() {
 
     const configuration = {
       method: "get",
-      url: `${uri}/avatar/all`,
+      url: `${uri}/avatar`,
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -29,7 +29,6 @@ export default function Community() {
   // make the API call
   axios(configuration)
   .then((result) => {
-    
     setAvatarArray(result.data)
   })
   .catch((error) => {

@@ -22,10 +22,19 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/create" element={<CreateAvatar />} />
-          <Route exact path="/community" element={<Community />} />
+          <Route
+            path="/community"
+            element={
+              <Protected>
+                <Community />
+              </Protected>
+            }
+          />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/editUser" element={<EditUser />} />
+
+          
           
           <Route
             path="/admin"

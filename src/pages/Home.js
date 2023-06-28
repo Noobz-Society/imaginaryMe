@@ -29,11 +29,9 @@ const Home = () => {
   }
 
   useEffect(() => {
-    //setTimeout(() => {
+    
       randomAvatar();
-   // }, "1000");
-   
-  },[] )
+  }, [])
 
   
   
@@ -47,7 +45,7 @@ const Home = () => {
           <div id="home_right_section">
             <p>Create personalized avatars effortlessly! Our website offers a diverse range of customization options for unique and stunning avatar creations. Try it now!</p>
             <div className="centered_button">
-              <button className="white-button" id="started_button"><a href="/create">Get Started !</a></button>
+            <a href="/create"><button className="white-button" id="started_button">Get Started !</button></a>
             </div>
           </div>
       </div>

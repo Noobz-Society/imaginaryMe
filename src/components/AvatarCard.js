@@ -8,32 +8,21 @@ import Copy from '../assets/img/copy.svg'
 import Customize from '../assets/img/customize.svg'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const uri = process.env.REACT_APP_URI;
 
 
 export const AvatarCard = ({ avatar }) => {
+  const token = cookies.get("TOKEN");
+
 
   const navigate = useNavigate();
 
-  const [likeImage, setLikeImage] = useState(Like);
-  const [dislikeImage, setDislikeImage] = useState(Dislike);
   const [svg, setSvg] = useState("");
 
 
-
-  const handleLike = () => {
-    const newLikeImage = likeImage === Like ? Like_blue : Like;
-    setLikeImage(newLikeImage);
-    
-  }
-
-  const handleDislike = () => {
-    const newDislikeImage = dislikeImage === Dislike ? Dislike_red : Dislike;
-    setDislikeImage(newDislikeImage);
-
-  }
 
   
 
@@ -49,44 +38,25 @@ export const AvatarCard = ({ avatar }) => {
   const eyebrowsColor = avatarAttributes[4].color;
   const hairVariant = avatarAttributes[5].variation;
   const hairColor = avatarAttributes[5].color;
+  const clotheVariant = avatarAttributes[5].variation;
+  const clotheColor = avatarAttributes[5].color;
   
   
 
   const getAvatar = () => {
     const configuration = {
-      method: "post",
-      url: `${uri}/avatar/create`,
-      data: [
-        {
-          variation: avatarAttributes[0].variation,
-          color: avatarAttributes[0].color
-        },
-        {
-          variation: avatarAttributes[1].variation,
-          color: avatarAttributes[1].color,
-        },
-        {
-          variation: avatarAttributes[2].variation,
-          color: avatarAttributes[2].color,
-        },
-        {
-          variation: avatarAttributes[3].variation,
-          color: avatarAttributes[3].color,
-        },
-        {
-          variation: avatarAttributes[4].variation,
-          color: avatarAttributes[4].color,
-        },
-        {
-          variation: avatarAttributes[5].variation,
-          color: avatarAttributes[5].color,
-        }
-      ],
+      method: "get",
+      url: `${uri}/avatar/${avatar._id}`,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
   };
   // make the API call
   axios(configuration)
   .then((result) => {
-    setSvg(result.data)
+    console.log(result.data)
+    setSvg(result.data.svg)
   })
   .catch((error) => {
     console.log(error)
@@ -118,6 +88,8 @@ export const AvatarCard = ({ avatar }) => {
     queryParams.append('eyebrowsColor', eyebrowsColor);
     queryParams.append('hairVariant', hairVariant);
     queryParams.append('hairColor', hairColor);
+    queryParams.append('clotheVariant', clotheVariant);
+    queryParams.append('clotheColor', clotheColor);
     
     navigate(`/create?${queryParams.toString()}`);
 
@@ -134,8 +106,6 @@ export const AvatarCard = ({ avatar }) => {
              <img src={UserPic} alt="user_avatar"/>
           </div>
           <div className="avatar_interactions">
-              <span onClick={handleLike}><img src={likeImage} alt="like"/></span>
-              <span onClick={handleDislike}><img src={dislikeImage} alt="dislike"/></span>
               <span onClick={download}><img src={Copy} alt="copy"/></span>
               <span onClick={handleCustomize}><img src={Customize} alt="customize"/></span>
               
@@ -150,8 +120,6 @@ export const AvatarCard = ({ avatar }) => {
          <div dangerouslySetInnerHTML={{ __html: svg }} />
         </div>
         <div className="avatar_interactions">
-              <span onClick={handleLike}><img src={likeImage} alt="like"/></span>
-              <span onClick={handleDislike}><img src={dislikeImage} alt="dislike"/></span>
               <span onClick={download}><img src={Copy} alt="copy"/></span>
               <span onClick={handleCustomize}><img src={Customize} alt="customize"/></span>
             

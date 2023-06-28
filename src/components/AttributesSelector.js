@@ -24,7 +24,7 @@ const AttributesSelector = ({attributesArray, handleAttributeSelect, setAvatarSa
           key={attribute._id}
           onClick={() => handleClick(attribute._id)}
         >
-          {attribute.key}
+          <p>{attribute.key}</p>
         </div>
       ))}
     </div>

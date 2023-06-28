@@ -1,17 +1,22 @@
 
 .selector_item {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 4rem;
+    height: 4rem;
+    contain: content;
     background-color: #fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-top: 2rem;
-    margin-left: 4.2rem;
+    text-align: center;
     cursor: pointer;
+    
+}
+
+.selector_item p {
+    font-size: 1vw;
+    margin-top: 1.4rem;
     
 }
 
 .selector_item.active {
     border: 2px solid #1445B0;
   }
+
+ 

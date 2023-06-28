@@ -1,15 +1,24 @@
 .canvas_container {
     border: 1px solid black;
-    width: 25%;
-    height: 22rem;
-   
-    bottom: 4rem;
+    width: 22%;
+    height: fit-content;
     contain: content;
    
+}
+
+.canvasDefault_container {
+    border: 1px solid black;
+    width: 22%;
+    height: 20rem;
+    
 }
 
 .canvas_container svg {
  width: inherit;
  height: inherit;
+ position: relative;
+ top: 0.5rem;
  
 }
+
+

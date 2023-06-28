@@ -1,3 +1,3 @@
 # CharaMe Website 
 
-## Website for avatar generation 
+## Avatar generator

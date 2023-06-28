@@ -22,3 +22,24 @@
 }
 
 
+@media (max-width: 770px) {
+   
+
+    .canvas_container {
+        position: relative;
+        bottom: 4rem;
+        width: fit-content;
+        height: fit-content;
+        contain: content;
+        
+        
+    }
+    .canvas_container svg {
+        width: 15rem;
+        height: 15rem;
+        
+       }
+  
+     
+  }
+  

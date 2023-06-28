@@ -34,8 +34,19 @@
    height: 100%;
 }
 
-.svg.resized {
-    background-color: blue;
+.svgresized {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.svgresized svg {
+    display: block;
+	max-width: 100%;
+	height: auto;
+	margin: 1em;
+    
 }
 
 .selector_colors {
@@ -71,8 +82,12 @@
    
   @media (max-width: 770px) {
     .selector_colors { 
-      grid-template-columns: repeat(1, 1fr); 
-     }
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        width: fit-content;
+        height: 2rem;
+    }
   
      
   }

@@ -23,9 +23,6 @@ export const AvatarCard = ({ avatar }) => {
   const [svg, setSvg] = useState("");
 
 
-
-  
-
   const avatarAttributes = avatar.attributes;
 
   const bodyVariant = avatarAttributes[0].variation;
@@ -36,10 +33,10 @@ export const AvatarCard = ({ avatar }) => {
   const mouthVariant = avatarAttributes[3].variation;
   const eyebrowsVariant = avatarAttributes[4].variation;
   const eyebrowsColor = avatarAttributes[4].color;
-  const hairVariant = avatarAttributes[5].variation;
-  const hairColor = avatarAttributes[5].color;
   const clotheVariant = avatarAttributes[5].variation;
   const clotheColor = avatarAttributes[5].color;
+  const hairVariant = avatarAttributes[6].variation;
+  const hairColor = avatarAttributes[6].color;
   
   
 
@@ -55,7 +52,7 @@ export const AvatarCard = ({ avatar }) => {
   // make the API call
   axios(configuration)
   .then((result) => {
-    console.log(result.data)
+    //console.log(result.data)
     setSvg(result.data.svg)
   })
   .catch((error) => {
@@ -74,6 +71,7 @@ export const AvatarCard = ({ avatar }) => {
     
   }
 
+  
   
   const handleCustomize = () => {
     
@@ -94,9 +92,11 @@ export const AvatarCard = ({ avatar }) => {
     navigate(`/create?${queryParams.toString()}`);
 
   }
+  
 
   useEffect(() => {
     getAvatar()
+    //console.log(avatar)
   })
 
   if (!avatar) {
@@ -107,7 +107,7 @@ export const AvatarCard = ({ avatar }) => {
           </div>
           <div className="avatar_interactions">
               <span onClick={download}><img src={Copy} alt="copy"/></span>
-              <span onClick={handleCustomize}><img src={Customize} alt="customize"/></span>
+              <span><img src={Customize} alt="customize"/></span>
               
           </div>
       </div>
@@ -121,7 +121,7 @@ export const AvatarCard = ({ avatar }) => {
         </div>
         <div className="avatar_interactions">
               <span onClick={download}><img src={Copy} alt="copy"/></span>
-              <span onClick={handleCustomize}><img src={Customize} alt="customize"/></span>
+              <span onClick={ handleCustomize }><img src={Customize} alt="customize"/></span>
             
         </div>
     </div>

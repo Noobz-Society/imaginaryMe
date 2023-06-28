@@ -6,7 +6,9 @@ const VariantsSelector = ({ variants, handleVariantSelect, constructAvatar, setS
 
   useEffect(() => {
     constructAvatar();
+    
   }, [constructAvatar, handleVariantSelect]); 
+
 
   if (!variants || !variants.variations) {
     return (

@@ -40,6 +40,7 @@ const Profile = () => {
     .then((result) => {
      
       setAvatarArray(result.data);
+      //console.log(result.data)
       
       if (result.data.length > 0) {
         setFirstAvatar(result.data[0]);
@@ -62,44 +63,23 @@ const Profile = () => {
   
   }
     
-  
+   
 
     const getAvatar = () => {
       if (firstAvatar) {
           const configuration = {
-            method: "post",
-            url: `${uri}/avatar/create`,
-            data: [
-              {
-                variation: firstAvatar.attributes[0].variation,
-                color: firstAvatar.attributes[0].color
-              },
-              {
-                variation: firstAvatar.attributes[1].variation,
-                color: firstAvatar.attributes[1].color,
-              },
-              {
-                variation: firstAvatar.attributes[2].variation,
-                color: firstAvatar.attributes[2].color,
-              },
-              {
-                variation: firstAvatar.attributes[3].variation,
-                color: firstAvatar.attributes[3].color,
-              },
-              {
-                variation: firstAvatar.attributes[4].variation,
-                color: firstAvatar.attributes[4].color,
-              },
-              {
-                variation: firstAvatar.attributes[5].variation,
-                color: firstAvatar.attributes[5].color,
-              }
-            ],
+            method: "get",
+            url: `${uri}/avatar/${firstAvatar._id}`,
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          
         };
         // make the API call
         axios(configuration)
         .then((result) => {
-          setSvg(result.data)
+          setSvg(result.data.svg)
         })
         .catch((error) => {
           console.log(error)
@@ -108,8 +88,7 @@ const Profile = () => {
           
   }
 
-    
-
+  
   useEffect(() => {
     getUserAvatars();
     document.body.classList.add('profile-background');
@@ -120,6 +99,7 @@ const Profile = () => {
     };
   }, []);
 
+  
   useEffect(() => {
     getAvatar();
   }, [firstAvatar]);

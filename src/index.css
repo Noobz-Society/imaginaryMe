@@ -39,6 +39,10 @@ body {
 
 }
 
+.createAvatar-background .burger {
+  color: #000;
+}
+
 @media (max-width: 1162px) {
   .createAvatar-background #title{
    color: #000;
@@ -50,6 +54,7 @@ body {
   background-image: url("./assets/img/headerVariant.svg");
 
 }
+
 
 .createAvatar-background header p {
   content: "creation time";

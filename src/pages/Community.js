@@ -14,8 +14,6 @@ export default function Community() {
   const [avatarArray, setAvatarArray] = useState([]);
  
 
-  
-
   const getAVatars = () => {
 
     const configuration = {
@@ -30,6 +28,7 @@ export default function Community() {
   axios(configuration)
   .then((result) => {
     setAvatarArray(result.data)
+    console.log(result.data)
   })
   .catch((error) => {
     console.log(error)
@@ -46,6 +45,7 @@ useEffect(() => {
   
   };
 }, []);
+
 
   return (
       <div className="community_container">

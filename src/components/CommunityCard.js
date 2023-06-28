@@ -83,8 +83,10 @@ export const CommunityCard = ({ avatar }) => {
     const mouthVariant = avatarAttributes[3].variation;
     const eyebrowsVariant = avatarAttributes[4].variation;
     const eyebrowsColor = avatarAttributes[4].color;
-    const hairVariant = avatarAttributes[5].variation;
-    const hairColor = avatarAttributes[5].color;
+    const clotheVariant = avatarAttributes[5].variation;
+    const clotheColor = avatarAttributes[5].color;
+    const hairVariant = avatarAttributes[6].variation;
+    const hairColor = avatarAttributes[6].color;
     
   
     const getAvatar = () => {
@@ -138,8 +140,11 @@ export const CommunityCard = ({ avatar }) => {
       queryParams.append('mouthVariant', mouthVariant);
       queryParams.append('eyebrowsVariant', eyebrowsVariant);
       queryParams.append('eyebrowsColor', eyebrowsColor);
+      queryParams.append('hairVariant', clotheVariant);
+      queryParams.append('hairColor', clotheColor);
       queryParams.append('hairVariant', hairVariant);
       queryParams.append('hairColor', hairColor);
+      
       
       navigate(`/create?${queryParams.toString()}`);
   

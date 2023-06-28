@@ -159,7 +159,7 @@ header {
     background-image: none!important;
   }
   #title {
-    margin-top: 7rem;
+    margin-top: 2rem;
   }
   .navigation_content {
     display: none;
@@ -216,8 +216,10 @@ footer{
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 80%;
+  align-items: center;
   gap: 1rem;
+  margin-right: 1rem;
+  
 
 }
 
@@ -335,8 +337,22 @@ footer{
 
 @media (max-width: 770px) {
   .selector { 
-    grid-template-columns: repeat(1, 1fr); 
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    bottom: 16rem;
+    width: fit-content;
+    height: 2rem;
+
+
+    
    }
+
+   .socials{
+    margin-right: 2rem;
+    
+  
+  }
 
    
 }

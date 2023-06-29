@@ -294,26 +294,7 @@ export default function CreateAvatar() {
 
 const randomAvatar = () => {
   setShouldConstructAvatar(false);
-  setAvatarSaved(false)
-
-  const previousAttributes = [
-    body_variant,
-    eyes_variant,
-    nose_variant,
-    mouth_variant,
-    eyebrows_variant,
-    clothe_variant,
-    hair_variant,
-    body_color,
-    eyes_color,
-    eyebrows_color,
-    clothe_color,
-    hair_color,
-
-  ];
-  
-    // Store the previous attribute values in local storage
-    localStorage.setItem('previousAttributes', JSON.stringify(previousAttributes));
+  setAvatarSaved(false);
 
   const configuration = {
     method: "get",
@@ -444,39 +425,7 @@ const saveAvatar = () => {
 };
 
 const loadFromLocalStorage = () => {
-  //setShouldConstructAvatar(true);
-  setStoredData(JSON.parse(localStorage.getItem("previousAttributes")));
-  //console.log(storedData);
-  
-  
- 
-  if(storedData !== null) {
-
-    //set the attributes variants
-    setBody_variant(storedData[0]._id);
-    setEyes_variant(storedData[1]._id);
-    setNose_variant(storedData[2]._id);
-    setMouth_variant(storedData[3]._id);
-    setEyebrows_variant(storedData[4]._id);
-    setClothe_variant(storedData[5]._id);
-    setHair_variant(storedData[6]._id);
-
-    
-     //set the attributes colors
-    setBody_color(storedData[7].color);
-    setEyes_color(storedData[8].color);
-    setEyebrows_color(storedData[9].color);
-    setClothe_color(storedData[10].color);
-    setHair_color(storedData[11].color);
-  
-   
-    constructAvatar();
-  }else {
-    console.log("null");
-  }
-
-  
-  
+  console.log("return");
 }
 
 const download = () => {
@@ -490,7 +439,7 @@ const download = () => {
 }
 
  // {isLoggedIn && <div className="visibility"><button onClick={() =>setVisibility(true)}>Public</button> <button  onClick={() =>setVisibility(false)}>Private</button></div>}
-  //
+  //<span className="createAvatar_buttons" onClick={loadFromLocalStorage}><i class="lni lni-arrow-left"></i></span>
   return (
       <div className="createAvatar_container">
         <div className="createAvatar_subcontainer">
@@ -500,8 +449,6 @@ const download = () => {
                   <span className="createAvatar_buttons" onClick={() =>randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
                   <span className="createAvatar_buttons" onClick={handleValidate}><i class="lni lni-checkmark"></i></span>
-                  <span className="createAvatar_buttons" onClick={loadFromLocalStorage}><i class="lni lni-arrow-left"></i></span>
-                  
 
                 </div>
                 <ColorSelector id="color_selector" variants={variants} handleColorSelect={handleColorSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar} setAvatarSaved={setAvatarSaved}/>
@@ -513,7 +460,6 @@ const download = () => {
             <span className="createAvatar_buttons" onClick={() =>randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
             <span className="createAvatar_buttons" onClick={handleValidate}><i class="lni lni-checkmark"></i></span>
-            <span className="createAvatar_buttons" onClick={loadFromLocalStorage}><i class="lni lni-arrow-left"></i></span>
 
 
           </div>

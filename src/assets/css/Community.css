@@ -21,7 +21,7 @@
 }
 
 
-#like_container {
+.like_container {
     border-radius: 50px;
     width: 1.1rem;
     height: 1.1rem;

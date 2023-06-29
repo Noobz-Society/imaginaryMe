@@ -29,6 +29,8 @@ export const CommunityCard = ({ avatar }) => {
     const [svg, setSvg] = useState("");
 
     const [likes, setLikes]  = useState(null);
+    const [dislikes, setDislikes]  = useState(null);
+
   
   
     const handleLike = (id) => {
@@ -67,9 +69,41 @@ export const CommunityCard = ({ avatar }) => {
       
     }
   
-    const handleDislike = () => {
+    const handleDislike = (id) => {
       const newDislikeImage = dislikeImage === Dislike ? Dislike_red : Dislike;
       setDislikeImage(newDislikeImage);
+
+      const newLikeImage = likeImage === Like ? Like_blue : Like;
+      setLikeImage(newLikeImage);
+
+    
+    const  url =  `${uri}/avatar/${id}/like`;
+ 
+
+    const requestBody = {
+      name: 'avatar',
+      value: -1,
+      
+    };
+  
+     
+   // make the API call
+    axios.post(url, requestBody, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+
+    .then((result) => {
+      
+    
+    })
+    
+    
+    .catch((error) => {
+      console.log(error)
+    });
   
     }
 
@@ -113,6 +147,7 @@ export const CommunityCard = ({ avatar }) => {
     useEffect(() => {
        getAvatar();
        setLikes(avatar.likes)
+       setDislikes(avatar.dislikes)
       console.log(avatar)
      
     },[])
@@ -173,8 +208,8 @@ export const CommunityCard = ({ avatar }) => {
              <div dangerouslySetInnerHTML={{ __html: svg }} />
             </div>
             <div className="avatar_interactions">
-                <span className="review_value"><div id="like_container">{likes}</div><img src={likeImage} alt="like" onClick={() => handleLike(avatar._id)}/></span>
-                <span><img src={dislikeImage} alt="dislike" onClick={handleDislike}/></span>
+                <span className="review_value"><div className="like_container">{likes}</div><img src={likeImage} alt="like" onClick={() => handleLike(avatar._id)}/></span>
+                <span  className="review_value"><div className="like_container">{likes}</div><img src={dislikeImage} alt="dislike" onClick={() => handleDislike(avatar._id)}/></span>
                 <span onClick={download}><img src={Copy} alt="copy"/></span>
                 <span onClick={handleCustomize}><img src={Customize} alt="customize"/></span>
                 

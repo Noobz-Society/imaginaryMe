@@ -284,7 +284,6 @@ export default function CreateAvatar() {
   axios(configuration)
   .then((result) => {
     setSvg(result.data)
-    console.log(result.data);
   })
   .catch((error) => {
     console.log(error)
@@ -296,6 +295,26 @@ export default function CreateAvatar() {
 const randomAvatar = () => {
   setShouldConstructAvatar(false);
   setAvatarSaved(false)
+
+  const previousAttributes = [
+    body_variant,
+    eyes_variant,
+    nose_variant,
+    mouth_variant,
+    eyebrows_variant,
+    clothe_variant,
+    hair_variant,
+    body_color,
+    eyes_color,
+    eyebrows_color,
+    clothe_color,
+    hair_color,
+
+  ];
+  
+    // Store the previous attribute values in local storage
+    localStorage.setItem('previousAttributes', JSON.stringify(previousAttributes));
+
   const configuration = {
     method: "get",
     url: `${uri}/avatar/create`,
@@ -304,9 +323,6 @@ const randomAvatar = () => {
 axios(configuration)
 .then((result) => {
   let attributes = result.data.attributes;
-
-  // Store attributes in local storage
-  localStorage.setItem('avatarAttributes', JSON.stringify(attributes));
 
   //set the attributes
   setBody_variant(attributes[0]._id);
@@ -428,9 +444,10 @@ const saveAvatar = () => {
 };
 
 const loadFromLocalStorage = () => {
-  setShouldConstructAvatar(true);
-  setStoredData(JSON.parse(localStorage.getItem("avatarAttributes")));
+  //setShouldConstructAvatar(true);
+  setStoredData(JSON.parse(localStorage.getItem("previousAttributes")));
   //console.log(storedData);
+  
   
  
   if(storedData !== null) {
@@ -443,19 +460,22 @@ const loadFromLocalStorage = () => {
     setEyebrows_variant(storedData[4]._id);
     setClothe_variant(storedData[5]._id);
     setHair_variant(storedData[6]._id);
+
     
      //set the attributes colors
-    setBody_color(storedData[0].color);
-    setEyes_color(storedData[1].color);
-    setEyebrows_color(storedData[4].color);
-    setClothe_color(storedData[5].color);
-    setHair_color(storedData[6].color);
+    setBody_color(storedData[7].color);
+    setEyes_color(storedData[8].color);
+    setEyebrows_color(storedData[9].color);
+    setClothe_color(storedData[10].color);
+    setHair_color(storedData[11].color);
   
    
     constructAvatar();
   }else {
     console.log("null");
   }
+
+  
   
 }
 
@@ -480,7 +500,7 @@ const download = () => {
                   <span className="createAvatar_buttons" onClick={() =>randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
                   <span className="createAvatar_buttons" onClick={handleValidate}><i class="lni lni-checkmark"></i></span>
-                  <span className="createAvatar_buttons" onClick={() => loadFromLocalStorage}><i class="lni lni-arrow-left"></i></span>
+                  <span className="createAvatar_buttons" onClick={loadFromLocalStorage}><i class="lni lni-arrow-left"></i></span>
                   
 
                 </div>
@@ -493,7 +513,7 @@ const download = () => {
             <span className="createAvatar_buttons" onClick={() =>randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
             <span className="createAvatar_buttons" onClick={handleValidate}><i class="lni lni-checkmark"></i></span>
-            <span className="createAvatar_buttons" onClick={() =>loadFromLocalStorage}><i class="lni lni-arrow-left"></i></span>
+            <span className="createAvatar_buttons" onClick={loadFromLocalStorage}><i class="lni lni-arrow-left"></i></span>
 
 
           </div>

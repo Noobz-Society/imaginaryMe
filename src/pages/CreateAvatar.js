@@ -438,8 +438,6 @@ const download = () => {
 
 }
 
- // {isLoggedIn && <div className="visibility"><button onClick={() =>setVisibility(true)}>Public</button> <button  onClick={() =>setVisibility(false)}>Private</button></div>}
-  //<span className="createAvatar_buttons" onClick={loadFromLocalStorage}><i class="lni lni-arrow-left"></i></span>
   return (
       <div className="createAvatar_container">
         <div className="createAvatar_subcontainer">

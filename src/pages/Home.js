@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../assets/css/Home.css'
 import BottomElipse from '../assets/img/bottomElipse.svg'
 import BottomCircle from '../assets/img/bottomCircle.svg'
@@ -45,7 +45,7 @@ const Home = () => {
       <div className="flex_container">
           <div id="home_left_section">
             <div id="circle"></div>
-            <div id="example_container"><div dangerouslySetInnerHTML={{ __html: svg }} /></div>
+             <div id="example_container"><div dangerouslySetInnerHTML={{ __html: svg }} /></div>
           </div>
           <div id="home_right_section">
             <p>Create personalized avatars effortlessly! Our website offers a diverse range of customization options for unique and stunning avatar creations. Try it now!</p>

@@ -6,9 +6,8 @@ const VariantsSelector = ({ variants, handleVariantSelect, constructAvatar, setS
 
   useEffect(() => {
     constructAvatar();
-    
   }, [constructAvatar, handleVariantSelect]); 
-
+  
 
   if (!variants || !variants.variations) {
     return (
@@ -39,15 +38,16 @@ const VariantsSelector = ({ variants, handleVariantSelect, constructAvatar, setS
  
   return (
     <div className="variantsSelector_container">
-      
-      {variants.variations.map(variant => (
-        
-        <div
-        className={`attribute${isSelected === variant._id ? ' active' : ''}`}
-        key={variant._id}
-        onClick={() => handleClick(variant._id)}
-        ><div  className={`svg${resize === true ? 'resized' : ''}`} dangerouslySetInnerHTML={{ __html: variant.svg }} /></div>
-      ))}
+     
+          {variants.variations.map(variant => (
+            
+            <div
+            className={`attribute${isSelected === variant._id ? ' active' : ''}`}
+            key={variant._id}
+            onClick={() => handleClick(variant._id)}
+            ><div  className={`svg${resize === true ? 'resized' : ''}`} dangerouslySetInnerHTML={{ __html: variant.svg }} /></div>
+          ))}
+       
     </div>
   );
 };

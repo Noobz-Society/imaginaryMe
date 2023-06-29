@@ -9,10 +9,10 @@
     background-repeat: no-repeat;
 }
 
+
+
 #example_container {
-    background-image: url('../img/exampleBackground.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
+    background-color: #fff;
     width: 400px;
     height: 400px;
     position: relative;
@@ -20,6 +20,7 @@
     bottom: 20rem;
     contain: content;
     overflow-y: hidden;
+    
 
     
 
@@ -27,7 +28,7 @@
 
 #example_container svg {
     width: inherit;
-    height: 390px;
+    height: inherit;
     
 
     

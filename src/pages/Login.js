@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 import axios from 'axios';
 import Cookies from "universal-cookie";
 import '../assets/css/Login.css'
-import Chara from '../assets/img/chara.svg'
+import Chara from '../assets/img/avatarWoman.svg'
 import { AuthContext } from '../AuthContext';
 
 const uri = process.env.REACT_APP_URI;
@@ -92,7 +92,7 @@ export default function Login() {
              {errorMessage && <p className="text-failed">{errorMessage}</p>}
            </form>
          
-          <img src={Chara} alt="chibi_character" id="chibi_character"/>
+          <div className="chara_container"><img src={Chara} alt="chibi_character" id="chibi_character"/></div>
 
         </div>
     )

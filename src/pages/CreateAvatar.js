@@ -19,6 +19,7 @@ const uri = process.env.REACT_APP_URI;
 export default function CreateAvatar() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const [storedData, setStoredData] = useState(null);
   
   const bodyVariant = queryParams.get('bodyVariant');
   const bodyColor = queryParams.get('bodyColor');
@@ -180,7 +181,7 @@ export default function CreateAvatar() {
   axios(configuration)
   .then((result) => {
     setAttributes(result.data);
-    console.log(result.data)
+    //console.log(result.data)
   
   })
   
@@ -283,6 +284,7 @@ export default function CreateAvatar() {
   axios(configuration)
   .then((result) => {
     setSvg(result.data)
+    console.log(result.data);
   })
   .catch((error) => {
     console.log(error)
@@ -303,6 +305,9 @@ axios(configuration)
 .then((result) => {
   let attributes = result.data.attributes;
 
+  // Store attributes in local storage
+  localStorage.setItem('avatarAttributes', JSON.stringify(attributes));
+
   //set the attributes
   setBody_variant(attributes[0]._id);
   setEyes_variant(attributes[1]._id);
@@ -312,8 +317,7 @@ axios(configuration)
   setClothe_variant(attributes[5]._id);
   setHair_variant(attributes[6]._id);
   
-
-
+  //set the attributes colors
   setBody_color(attributes[0].color);
   setEyes_color(attributes[1].color);
   setEyebrows_color(attributes[4].color);
@@ -384,7 +388,7 @@ const saveAvatar = () => {
 
       .then((result) => {
         
-       console.log(result)
+       //console.log(result)
       
       })
       
@@ -399,7 +403,6 @@ const saveAvatar = () => {
 
   useEffect(() => {
     document.body.classList.add('createAvatar-background');
-    console.log(bodyVariant)
     handleAttributeSelect("64943f502d9bc32598a3706a")
     constructAvatar();
     getAttributes();
@@ -424,8 +427,35 @@ const saveAvatar = () => {
   
 };
 
-const handleBack = () => {
-  console.log("return")
+const loadFromLocalStorage = () => {
+  setShouldConstructAvatar(true);
+  setStoredData(JSON.parse(localStorage.getItem("avatarAttributes")));
+  //console.log(storedData);
+  
+ 
+  if(storedData !== null) {
+
+    //set the attributes variants
+    setBody_variant(storedData[0]._id);
+    setEyes_variant(storedData[1]._id);
+    setNose_variant(storedData[2]._id);
+    setMouth_variant(storedData[3]._id);
+    setEyebrows_variant(storedData[4]._id);
+    setClothe_variant(storedData[5]._id);
+    setHair_variant(storedData[6]._id);
+    
+     //set the attributes colors
+    setBody_color(storedData[0].color);
+    setEyes_color(storedData[1].color);
+    setEyebrows_color(storedData[4].color);
+    setClothe_color(storedData[5].color);
+    setHair_color(storedData[6].color);
+  
+   
+    constructAvatar();
+  }else {
+    console.log("null");
+  }
   
 }
 
@@ -440,7 +470,7 @@ const download = () => {
 }
 
  // {isLoggedIn && <div className="visibility"><button onClick={() =>setVisibility(true)}>Public</button> <button  onClick={() =>setVisibility(false)}>Private</button></div>}
-  //<span className="createAvatar_buttons" onClick={() => handleBack}><i class="lni lni-arrow-left"></i></span>
+  //
   return (
       <div className="createAvatar_container">
         <div className="createAvatar_subcontainer">
@@ -450,6 +480,7 @@ const download = () => {
                   <span className="createAvatar_buttons" onClick={() =>randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
                   <span className="createAvatar_buttons" onClick={handleValidate}><i class="lni lni-checkmark"></i></span>
+                  <span className="createAvatar_buttons" onClick={() => loadFromLocalStorage}><i class="lni lni-arrow-left"></i></span>
                   
 
                 </div>
@@ -462,6 +493,8 @@ const download = () => {
             <span className="createAvatar_buttons" onClick={() =>randomAvatar()}><img src={RandomizeButton} alt="randomize-icon"/></span>
 
             <span className="createAvatar_buttons" onClick={handleValidate}><i class="lni lni-checkmark"></i></span>
+            <span className="createAvatar_buttons" onClick={() =>loadFromLocalStorage}><i class="lni lni-arrow-left"></i></span>
+
 
           </div>
        <VariantSelector id="variant_selector" variants={variants} handleVariantSelect={handleVariantSelect} constructAvatar={constructAvatar} setShouldConstructAvatar={setShouldConstructAvatar} setAvatarSaved={setAvatarSaved} resize={resize}/>

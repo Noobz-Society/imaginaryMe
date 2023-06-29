@@ -75,18 +75,18 @@ export const CommunityCard = ({ avatar }) => {
 
     const avatarAttributes = avatar.attributes;
 
-    const bodyVariant = avatarAttributes[0].variation;
-    const bodyColor = avatarAttributes[0].color;
-    const eyesVariant = avatarAttributes[1].variation;
-    const eyesColor = avatarAttributes[1].color;
-    const noseVariant = avatarAttributes[2].variation;
-    const mouthVariant = avatarAttributes[3].variation;
-    const eyebrowsVariant = avatarAttributes[4].variation;
-    const eyebrowsColor = avatarAttributes[4].color;
-    const clotheVariant = avatarAttributes[5].variation;
-    const clotheColor = avatarAttributes[5].color;
-    const hairVariant = avatarAttributes[6].variation;
-    const hairColor = avatarAttributes[6].color;
+  const bodyVariant = avatarAttributes[0].variation;
+  const bodyColor = avatarAttributes[0].color;
+  const eyesVariant = avatarAttributes[1].variation;
+  const eyesColor = avatarAttributes[1].color;
+  const noseVariant = avatarAttributes[2].variation;
+  const mouthVariant = avatarAttributes[3].variation;
+  const eyebrowsVariant = avatarAttributes[4].variation;
+  const eyebrowsColor = avatarAttributes[4].color;
+  const clotheVariant = avatarAttributes[5].variation;
+  const clotheColor = avatarAttributes[5].color;
+  const hairVariant = avatarAttributes[6].variation;
+  const hairColor = avatarAttributes[6].color;
     
   
     const getAvatar = () => {
@@ -140,11 +140,10 @@ export const CommunityCard = ({ avatar }) => {
       queryParams.append('mouthVariant', mouthVariant);
       queryParams.append('eyebrowsVariant', eyebrowsVariant);
       queryParams.append('eyebrowsColor', eyebrowsColor);
-      queryParams.append('hairVariant', clotheVariant);
-      queryParams.append('hairColor', clotheColor);
       queryParams.append('hairVariant', hairVariant);
       queryParams.append('hairColor', hairColor);
-      
+      queryParams.append('clotheVariant', clotheVariant);
+      queryParams.append('clotheColor', clotheColor);
       
       navigate(`/create?${queryParams.toString()}`);
   

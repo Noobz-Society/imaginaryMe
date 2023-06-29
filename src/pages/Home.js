@@ -29,8 +29,13 @@ const Home = () => {
   }
 
   useEffect(() => {
-    
       randomAvatar();
+
+      const interval = setInterval(() => {
+          randomAvatar();
+      }, 5 * 1000);
+
+      return () => clearTimeout(interval);
   }, [])
 
   
@@ -51,8 +56,6 @@ const Home = () => {
       </div>
       <img src={BottomElipse} alt="bottomElipse" id="bottom_elipse"/>
       <img src={BottomCircle} alt="bottomElipse" id="bottom_circle"/>
-
-      
     </div>
   )
 }

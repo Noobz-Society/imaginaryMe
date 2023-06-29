@@ -10,15 +10,15 @@
 }
 
 .selector_item p {
-    font-size: 1vw;
-    margin-top: 1.4rem;
-    
+    font-size: 1.2vw;
+   
 }
 
 .selector_item.active {
     border: 2px solid #1445B0;
   }
 
+  
  
   @media (max-width: 770px) {
 

@@ -43,18 +43,20 @@ const Header = () => {
             <div className="navigation_content">
               <Link to="/" className={isLinkActive("/")}>Home</Link>
               <Link to="/create" className={isLinkActive("/create")}>Create</Link>
-              <Link to="/community" className={isLinkActive("/community")}>Community</Link>
+                {
+                    isLoggedIn &&
+                    <Link to="/community" className={isLinkActive("/community")}>Community</Link>
+                }
             </div>
           
             {isLoggedIn ? (
             <div className="navigation_content">
               <Link to="/profile" className={isLinkActive("/profile")}>Profile</Link>
                 <Link onClick={handleLogoutClick} to="/">Log out<i class="lni lni-enter"></i></Link>
-              {isAdmin ? (
 
+              {isAdmin ? (
                 <Link to="/admin"><button className="white-button">Admin Panel</button></Link>
               ): (
-
                   <></>
               )}
           
@@ -62,11 +64,9 @@ const Header = () => {
             </div>
             ) : (
               <div className="navigation_content">
-              <Link to="/login" className={isLinkActive("/login")}>Sign in</Link>
+                <Link to="/login" className={isLinkActive("/login")}>Sign in</Link>
                 <Link to="/register" className={isLinkActive("/register")}>Sign up</Link>
-                
-
-            </div>
+              </div>
             )}
             
           </div>
@@ -75,7 +75,7 @@ const Header = () => {
       <ul className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
               <li><a href="/">Home</a></li>
               <li><a href="/create">Create</a></li>
-              <li><a href="/community">Community</a></li> 
+              {/*<li><a href="/community">Community</a></li> */}
               <li><a href="/login" className={isLinkActive("/login")}>Sign in</a></li>
               <li><a href="/register" className={isLinkActive("/register")}>Sign up</a></li>
       </ul>

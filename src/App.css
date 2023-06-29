@@ -63,13 +63,13 @@ header {
   flex-direction: row;
   gap: 50rem;
   justify-content: center;
-  width: 100%; 
+  width: 100%;
   position: relative;
   top: 5rem;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  
+
 }
 
 .navigation_content {
@@ -86,7 +86,6 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
 
 #title {
@@ -104,9 +103,7 @@ header {
 /* mobile menu */
 
 .navigation-menu {
-  display: flex;
   flex-direction: column;
-  background-color: #fff;
   position: relative;
   bottom: 4rem;
   gap: 1rem;
@@ -114,8 +111,6 @@ header {
   background-color: white;
   border-top: 1px solid black;
   display: none;
-  
-  
 }
 
 
@@ -127,12 +122,12 @@ header {
 }
 
 .navigation-menu a {
- 
+
 
 }
 
 .navigation-menu a:hover {
- 
+
 }
 
 .burger{
@@ -145,7 +140,7 @@ header {
   position: absolute;
   top: 40%;
   right: 25px;
- 
+
 }
 .burger i {
   font-size: 25px;
@@ -167,14 +162,14 @@ header {
 
   .burger {
     display: block;
-    
+
   }
 
   .navigation-menu.expanded {
     display: flex;
   }
 
- 
+
 }
 
 /* Footer */
@@ -201,8 +196,6 @@ footer{
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  align-items: center;
-  justify-content: center;
 }
 
 .footer-content h3{
@@ -219,13 +212,13 @@ footer{
   align-items: center;
   gap: 1rem;
   margin-right: 1rem;
-  
+
 
 }
 
 .socials a{
   color: #fff;
- 
+
 }
 .socials a i{
   font-size: 1.1rem;
@@ -270,8 +263,6 @@ footer{
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     padding: 2rem 3.5rem 2rem 3.5rem;
-    
-
 }
 
 
@@ -292,7 +283,6 @@ footer{
   background-color: #fff;
   width: 175px;
   height: 175px;
-  
 }
 
 .avatar_image img {
@@ -309,7 +299,6 @@ footer{
   align-items: center;
   justify-content: center;
   gap: 1rem;
-
 }
 
 .avatar_interactions span {
@@ -328,35 +317,22 @@ footer{
 /* mobile */
 
 @media (max-width: 870px) {
-  .selector { 
-    grid-template-columns: repeat(1, 1fr); 
+  .selector {
+    grid-template-columns: repeat(1, 1fr);
    }
-
 }
 
-
 @media (max-width: 770px) {
-  .selector { 
+  .selector {
     display: flex;
     flex-direction: row;
     position: relative;
     bottom: 16rem;
     width: fit-content;
     height: 2rem;
-
-
-    
    }
 
    .socials{
     margin-right: 2rem;
-    
-  
   }
-
-   
 }
-
-
-
-

@@ -114,10 +114,15 @@
 }
 
 @media (max-width: 770px) {
+    #saved {
+        position: relative;
+        bottom: 11rem;
+    }
+    
 
     
     .createAvatar_container {
-        
+      
 
     }
 
@@ -127,7 +132,7 @@
         border-radius: 10px;
         position: relative;
         right: 7rem;
-        bottom: 2rem;
+        bottom: 10rem;
        
     }
  

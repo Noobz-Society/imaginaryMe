@@ -17,7 +17,7 @@ const AttributesSelector = ({attributesArray, handleAttributeSelect, setAvatarSa
 
 
   return (
-    <div className="selector">
+    <><div className="selector">
       {attributesArray.map(attribute => (
         <div
           className={`selector_item${isSelected === attribute._id ? ' active' : ''}`}
@@ -28,6 +28,18 @@ const AttributesSelector = ({attributesArray, handleAttributeSelect, setAvatarSa
         </div>
       ))}
     </div>
+
+    <div className="mobile_selector">
+        {attributesArray.map(attribute => (
+          <div
+            className={`mobile_selector_item${isSelected === attribute._id ? ' active' : ''}`}
+            key={attribute._id}
+            onClick={() => handleClick(attribute._id)}
+          >
+            <p>{attribute.key}</p>
+          </div>
+        ))}
+      </div></>
   );
 };
 export default AttributesSelector

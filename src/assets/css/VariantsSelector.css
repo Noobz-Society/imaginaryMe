@@ -85,18 +85,72 @@
 
 .color_item.active {
     border: 2px solid #1445B0;
-  }
+}
 
+.mobile_selector_colors {
+    background: linear-gradient(180deg, #D8ECFF 0%, #DFE7F7 25.52%, #E4E2F2 50.52%, #EADDEE 74.48%, #EFD7EA 100%);
+    height: 3rem;
+    width: 50%;
+    display: none;
+    padding: 0.5rem;
+    white-space: nowrap; 
+    overflow-x: scroll;
+    text-align: center;
+    overflow-y: hidden;
+    position: absolute;
+    top: 15rem;
+    border: 1px solid rgb(128, 122, 122);
+    border-radius: 40px;
+   
+
+}
+
+.mobile_selector_colors::-webkit-scrollbar { 
+    display: none; 
+ }
+
+.mobile_color_item {
+    background-color: #fff;
+    cursor: pointer;
+    contain: content;
+    display: inline-block;
+    margin: 0 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    text-align: center;
+
+}
    
   @media (max-width: 770px) {
     .selector_colors { 
         grid-template-columns: repeat(1, 1fr); 
         white-space: nowrap; 
         overflow-y: scroll;
-       
     
     }
     
-  
+  }
+   
+
+    @media (max-width: 570px) {
+        .selector_colors {
+            display: none;
+            
+        }
+        .mobile_selector_colors {
+            display: block;
+
+        }
+
+        .variantsSelector_container{
+           margin-top: 5rem;
+           border: 1px solid rgb(128, 122, 122);
+           border-radius: 40px;
+          
+            
+           
+        }
+        
      
   }

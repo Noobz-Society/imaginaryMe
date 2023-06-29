@@ -27,10 +27,10 @@
 
     .canvas_container {
         position: relative;
-        bottom: 4rem;
         width: fit-content;
         height: fit-content;
         contain: content;
+        margin-top: 2rem;
         
         
     }

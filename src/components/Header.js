@@ -75,7 +75,7 @@ const Header = () => {
       <ul className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
               <li><a href="/">Home</a></li>
               <li><a href="/create">Create</a></li>
-              {/*<li><a href="/community">Community</a></li> */}
+              {isLoggedIn && <li><a href="/community">Community</a></li> }
               <li><a href="/login" className={isLinkActive("/login")}>Sign in</a></li>
               <li><a href="/register" className={isLinkActive("/register")}>Sign up</a></li>
       </ul>

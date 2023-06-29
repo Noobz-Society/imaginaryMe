@@ -55,6 +55,7 @@
     position: relative;
     bottom: 7rem;
     display: none;
+    
 }
 
   
@@ -72,6 +73,7 @@
 
     .createAvatar_buttons_mobile {
         right: 0.5rem;
+        border-radius: 50px;
     }
  
 }
@@ -87,6 +89,7 @@
     .createAvatar_buttons_mobile {
         display: flex;
         right: -1rem;
+       
     }
 
  
@@ -116,26 +119,33 @@
 @media (max-width: 770px) {
     #saved {
         position: relative;
-        bottom: 11rem;
+        bottom: 7rem;
     }
     
 
     
-    .createAvatar_container {
-      
-
-    }
-
     .createAvatar_buttons_mobile {
         width: 2rem;
         height: 2rem;
         border-radius: 10px;
         position: relative;
         right: 7rem;
-        bottom: 10rem;
+        bottom: 6rem;
        
     }
  
 }
 
+@media (max-width: 570px) {
+    .createAvatar_buttons_mobile {
+        top: 1.5rem;
+       
+    }
+
+    #saved {
+        position: relative;
+        bottom: 1rem;
+    }
+     
+}  
 

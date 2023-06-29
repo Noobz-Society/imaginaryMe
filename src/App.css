@@ -108,9 +108,10 @@ header {
   bottom: 4rem;
   gap: 1rem;
   padding-top: 1rem;
-  background-color: white;
+  background-color: #fff;
   border-top: 1px solid black;
   display: none;
+  margin-bottom: 3rem;
 }
 
 
@@ -334,3 +335,14 @@ footer{
     margin-right: 2rem;
   }
 }
+
+@media (max-width: 570px) {
+  .selector {
+    display: none;
+    
+   }
+   
+
+
+}
+

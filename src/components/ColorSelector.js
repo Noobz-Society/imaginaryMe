@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import '../assets/css/VariantsSelector.css'
 
 const ColorSelector = ({ variants, handleColorSelect, constructAvatar, setShouldConstructAvatar, setAvatarSaved }) => {
@@ -30,7 +30,7 @@ const ColorSelector = ({ variants, handleColorSelect, constructAvatar, setShould
   };
 
   return (
-    <div className="selector_colors">
+    <><div className="selector_colors">
       {variants.colors.map(color => (
         <div
           className={`color_item${isSelected === color ? ' active' : ''}`}
@@ -40,6 +40,16 @@ const ColorSelector = ({ variants, handleColorSelect, constructAvatar, setShould
         ></div>
       ))}
     </div>
+    <div className="mobile_selector_colors">
+        {variants.colors.map(color => (
+          <div
+            className={`mobile_color_item${isSelected === color ? ' active' : ''}`}
+            key={color}
+            style={{ backgroundColor: color }}
+            onClick={event => handleClick(color)}
+          ></div>
+        ))}
+      </div></>
   )
 }
 

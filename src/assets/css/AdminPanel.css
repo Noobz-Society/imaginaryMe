@@ -1,6 +1,22 @@
 .adminPanelContainer {
     margin-bottom: 2rem;
     
+   
+}
+
+.adminPanel_subcontainer {
+    display:grid;
+    grid-template-columns: 160px 160px 160px 160px;
+    grid-row: auto auto;
+    grid-column-gap: 10rem;
+    grid-row-gap: 20px;
+    text-align: center;
+    font-size: 12px;
+    margin-left: 10%;
+    margin-top: 3rem;
+
+    
+
 }
 
 .adminPanelContainer h2 {

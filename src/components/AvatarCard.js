@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import UserPic from '../assets/img/userPic.svg'
-import Like from '../assets/img/like.svg'
-import Like_blue from '../assets/img/like_blue.svg'
-import Dislike from '../assets/img/dislike.svg'
-import Dislike_red from '../assets/img/dislike_red.svg'
 import Copy from '../assets/img/copy.svg'
 import Customize from '../assets/img/customize.svg'
 import axios from 'axios';
@@ -14,9 +10,13 @@ const cookies = new Cookies();
 const uri = process.env.REACT_APP_URI;
 
 
-export const AvatarCard = ({ avatar }) => {
+export const AvatarCard = ({ avatar, setIsDeleted }) => {
   const token = cookies.get("TOKEN");
+  const [isAdmin, setIsAdmin] = useState(false);
 
+
+  const tokenData = JSON.parse(atob(token.split('.')[1]));
+  const userRole = tokenData.role;
 
   const navigate = useNavigate();
 
@@ -71,6 +71,28 @@ export const AvatarCard = ({ avatar }) => {
     
   }
 
+  const handleDelete = (id) => {
+      const configuration = {
+        method: "delete",
+        url: `${uri}/avatar/${id}`,
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+    };
+    // make the API call
+    axios(configuration)
+    .then((result) => {
+      setIsDeleted(true)
+     
+      
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+
+  }
+
   
   
   const handleCustomize = () => {
@@ -96,8 +118,11 @@ export const AvatarCard = ({ avatar }) => {
 
   useEffect(() => {
     getAvatar()
-    //console.log(avatar)
-  })
+    console.log(avatar)
+    if(userRole === "admin") {
+      setIsAdmin(true)
+    }
+  }, [])
 
   if (!avatar) {
     return (
@@ -106,7 +131,8 @@ export const AvatarCard = ({ avatar }) => {
              <img src={UserPic} alt="user_avatar"/>
           </div>
           <div className="avatar_interactions">
-              <span onClick={download}><img src={Copy} alt="copy"/></span>
+             { isAdmin && <span><i class="lni lni-trash-can"></i></span>}
+              <span><img src={Copy} alt="copy"/></span>
               <span><img src={Customize} alt="customize"/></span>
               
           </div>
@@ -120,9 +146,10 @@ export const AvatarCard = ({ avatar }) => {
          <div dangerouslySetInnerHTML={{ __html: svg }} />
         </div>
         <div className="avatar_interactions">
+           { isAdmin &&  <span onClick={() => handleDelete(avatar._id)}><i class="lni lni-trash-can"></i></span> }
               <span onClick={download}><img src={Copy} alt="copy"/></span>
-              <span onClick={ handleCustomize }><img src={Customize} alt="customize"/></span>
-            
+              <span onClick={handleCustomize }><img src={Customize} alt="customize"/></span>
+
         </div>
     </div>
   )

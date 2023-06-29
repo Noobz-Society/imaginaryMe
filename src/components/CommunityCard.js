@@ -28,6 +28,7 @@ export const CommunityCard = ({ avatar }) => {
     const [dislikeImage, setDislikeImage] = useState(Dislike);
     const [svg, setSvg] = useState("");
 
+    const [isLiked, setIsliked] = useState(false)
     const [likes, setLikes]  = useState(null);
     const [dislikes, setDislikes]  = useState(null);
 
@@ -36,6 +37,7 @@ export const CommunityCard = ({ avatar }) => {
     const handleLike = (id) => {
       const newLikeImage = likeImage === Like ? Like_blue : Like;
       setLikeImage(newLikeImage);
+      setIsliked(true);
 
     
     const  url =  `${uri}/avatar/${id}/like`;
@@ -152,6 +154,16 @@ export const CommunityCard = ({ avatar }) => {
      
     },[])
 
+    useEffect(() => {
+      if(isLiked) {
+        getAvatar();
+        setLikes(avatar.likes);
+        setIsliked(false)
+
+      }
+      
+    }, [isLiked])
+
   
 
     const download = () => {
@@ -209,7 +221,7 @@ export const CommunityCard = ({ avatar }) => {
             </div>
             <div className="avatar_interactions">
                 <span className="review_value"><div className="like_container">{likes}</div><img src={likeImage} alt="like" onClick={() => handleLike(avatar._id)}/></span>
-                <span  className="review_value"><div className="like_container">{likes}</div><img src={dislikeImage} alt="dislike" onClick={() => handleDislike(avatar._id)}/></span>
+                <span  className="review_value"><div className="like_container">{dislikes}</div><img src={dislikeImage} alt="dislike" onClick={() => handleDislike(avatar._id)}/></span>
                 <span onClick={download}><img src={Copy} alt="copy"/></span>
                 <span onClick={handleCustomize}><img src={Customize} alt="customize"/></span>
                 

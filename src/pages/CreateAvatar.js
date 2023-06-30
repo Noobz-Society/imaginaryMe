@@ -19,7 +19,7 @@ const uri = process.env.REACT_APP_URI;
 export default function CreateAvatar() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const [storedData, setStoredData] = useState(null);
+  
   
   const bodyVariant = queryParams.get('bodyVariant');
   const bodyColor = queryParams.get('bodyColor');
@@ -55,6 +55,7 @@ export default function CreateAvatar() {
   const [hair_color, setHair_color] = useState( hairColor || "#edce84");
   const [clothe_variant, setClothe_variant] = useState( clotheVariant || "649c37f793982e29b9c3015d");
   const [clothe_color, setClothe_color] = useState( clotheColor || "#ff8f8f");
+  
 
   const [avatarSaved, setAvatarSaved] = useState(false);
   const [shouldConstructAvatar, setShouldConstructAvatar] = useState(true);
@@ -424,9 +425,6 @@ const saveAvatar = () => {
   
 };
 
-const loadFromLocalStorage = () => {
-  console.log("return");
-}
 
 const download = () => {
   const element = document.createElement("a");
